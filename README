@@ -1,0 +1,4 @@
+USAGE
+
+./config.sh zzy@optimus.cs.duke.edu 11 8 zzy@skylynx.cs.duke.edu 22 9 http://www.baidu.com http://www.google.com
+
