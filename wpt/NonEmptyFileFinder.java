@@ -9,6 +9,7 @@ import util.Util;
 
 public class NonEmptyFileFinder
 {
+	// modify ROOT to fit in both HTML and scripts
 	static final String ROOT = "/Users/zzy/Documents/script/new/";
 	static final int MIN_LINE = 5;
 	
