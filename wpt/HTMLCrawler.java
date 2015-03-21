@@ -51,6 +51,7 @@ public class HTMLCrawler
 		Calendar cal = Calendar.getInstance();
 		int month = cal.get(Calendar.MONTH) + 1;
 		int day = cal.get(Calendar.DATE);
+		System.out.println(month+"."+day);
 
 		for (int i = 0; i < SRC.length; i++)
 		{
