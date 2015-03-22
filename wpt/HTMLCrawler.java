@@ -55,6 +55,7 @@ public class HTMLCrawler
 
 		for (int i = 0; i < SRC.length; i++)
 		{
+			System.out.println("Processing... "+i+" "+(i+1.0)/SRC.length*100+"%");
 			String[] tokens = SRC[i].split("[/\\\\]+");
 			String fullname = tokens[tokens.length - 1];
 			int index = fullname.lastIndexOf(".");
