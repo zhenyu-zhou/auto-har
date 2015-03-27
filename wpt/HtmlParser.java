@@ -16,9 +16,10 @@ public class HtmlParser extends ParserCallback
 	protected String base;
 	protected static Vector<String> links = new Vector<String>();
 	protected static Vector<String> scripts = new Vector<String>();
-	final static String PATH = "/Users/zzy/Documents/pages_CPT/youtube.webarchive"; // "/Users/zzy/Downloads/a/1.html";
+	final static String PATH = "/Users/zzy/Documents/pages_CPT/taobao.webarchive"; // "/Users/zzy/Downloads/a/1.html";
 	protected static boolean inScript = false;
 	protected static HashSet<String> domains = new HashSet<String>();
+	protected static HashSet<String> main_domains = new HashSet<String>();
 
 	// https://books.google.com/books?id=emcgAeq_oXgC&pg=PA324&lpg=PA324&dq=javax.swing.text.html.parser+script&source=bl&ots=Aa2pjTHAyW&sig=SG3ukGgrzDzD2UoFmB9Ss16WeaM&hl=en&sa=X&ei=WXT2VMGkOIO1sASs6YCQDQ&ved=0CB0Q6AEwADgK#v=onepage&q=javax.swing.text.html.parser%20script&f=false
 	@Override
@@ -135,7 +136,7 @@ public class HtmlParser extends ParserCallback
 				// TODO
 				if(links.get(i).contains(".js") || links.get(i).contains(".css"))
 				{
-					System.out.println("Script: "+links.get(i));
+					// System.out.println("Script: "+links.get(i));
 				}
 				// System.out.println(links.get(i));
 				String d = getDomain(links.get(i));
@@ -143,12 +144,27 @@ public class HtmlParser extends ParserCallback
 					domains.add(d);
 			}
 
-			// System.out.println(domains.size());
+			System.out.println(domains.size());
 			Iterator<String> p = domains.iterator();
 			while (p.hasNext())
 			{
 				String d = p.next();
-				// System.out.println(d);
+				System.out.println(d);
+				String[] tokens = d.split("[.]");
+				if(tokens.length < 2)
+				{
+					System.err.println("Too few tokens!");
+					continue;
+				}
+				main_domains.add(tokens[tokens.length-2]);
+			}
+			
+			System.out.println(main_domains.size());
+			p = main_domains.iterator();
+			while (p.hasNext())
+			{
+				String d = p.next();
+				System.out.println(d);
 			}
 
 		} catch (Exception e)
