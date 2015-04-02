@@ -52,6 +52,17 @@ public class Pair<M, N extends Number> implements Comparable<Pair<M, N>>
 	{
 		return m + ": " + n;
 	}
+	
+	@Override
+	public boolean equals(Object o)
+	{
+		if(!(o instanceof Pair<?, ?>))
+			return false;
+		Pair p = (Pair)o;
+		if(m.equals(p.m) && n.equals(p.n))
+			return true;
+		return false;
+	}
 
 	public M getFirst()
 	{
