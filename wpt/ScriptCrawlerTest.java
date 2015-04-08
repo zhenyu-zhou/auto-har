@@ -8,7 +8,7 @@ import util.HttpUtil;
 
 public class ScriptCrawlerTest
 {
-	static final String[] SRC = { "https://www.google.com/?gws_rd=ssl/index.html" };
+	static final String[] SRC = { "http://z-ecx.images-amazon.com/images/G/01/AUIClients/AmazonUI-aa934ce2b8aed108efc75d1fcbe9d30f93c29757.rendering_engine-not-trident.min._V2_.css" };
 	static final String ROOT = "/Users/zzy/Documents/script/new/";
 
 	static HashSet<String> dup = new HashSet<String>();

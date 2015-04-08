@@ -34,6 +34,11 @@ public class MapCount<T>
 		}
 	}
 	
+	public boolean containsKey(T t)
+	{
+		return count.containsKey(t);
+	}
+	
 	public Set<T> keySet()
 	{
 		return count.keySet();
