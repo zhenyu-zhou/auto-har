@@ -54,9 +54,11 @@ public class Test
 			// Wait till Firebug is loaded
 			Thread.sleep(5000);
 
+			System.out.println("heh");
+			
 			// Load test page http://optimus.cs.duke.edu/youtube/
-			driver.get("http://www.facebook.com");
-			// driver.get("http://www.baidu.com");
+			// driver.get("http://www.facebook.com");
+			driver.get("http://www.baidu.com");
 
 			// Wait till HAR is exported
 			Thread.sleep(10000);

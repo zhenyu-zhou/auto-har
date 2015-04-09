@@ -37,7 +37,8 @@ public class HTMLCrawler
 			"Yahoo", "Wiki", "Amazon", "Twitter", "Taobao", "QQ",
 			"Google_India", "Linkedin", "Live", "Sina", "Weibo", "Yahoo_Japan",
 			"Tmall", "Google_Japan", "Google_German", "Ebay", "Blogger",
-			"Hao123", "Reddit", "Bing", "Google_UK" };
+			"Hao123",
+			"Reddit", "Bing", "Google_UK" };
 	static final String ROOT = "/Users/zzy/Documents/script/html/";
 
 	public static void main(String args[]) throws IOException
