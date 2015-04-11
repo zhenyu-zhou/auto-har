@@ -1,16 +1,10 @@
 package wpt;
 
 import java.io.*;
-import java.util.concurrent.*;
 import java.lang.InterruptedException;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Test
 {
@@ -33,10 +27,10 @@ public class Test
 		// Set default Firefox preferences
 		profile.setPreference("app.update.enabled", false);
 
-		String domain = "extensions.firebug.";
+		String domain = "extensions.firebug@software.joehewitt.com.";
 
 		// Set default Firebug preferences
-		profile.setPreference(domain + "currentVersion", "2.0");
+		profile.setPreference(domain + "currentVersion", "3.0.0");
 		profile.setPreference(domain + "allPagesActivation", "on");
 		profile.setPreference(domain + "defaultPanelName", "net");
 		profile.setPreference(domain + "net.enableSites", true);
@@ -53,12 +47,9 @@ public class Test
 		{
 			// Wait till Firebug is loaded
 			Thread.sleep(5000);
-
-			System.out.println("heh");
 			
-			// Load test page http://optimus.cs.duke.edu/youtube/
-			// driver.get("http://www.facebook.com");
-			driver.get("http://www.baidu.com");
+			// Load test page
+			driver.get("https://www.facebook.com");
 
 			// Wait till HAR is exported
 			Thread.sleep(10000);
