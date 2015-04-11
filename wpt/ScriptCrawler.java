@@ -9,7 +9,7 @@ import util.MapCount;
 
 public class ScriptCrawler
 {
-	static final String ROOT = "/Users/zzy/Documents/script/new/";
+	static final String ROOT = "/Users/zzy/Documents/script/js/";
 	static final String[] SRC = {
 			"http://www.google-analytics.com/analytics.js",
 			"https://apis.google.com/js/api.js",

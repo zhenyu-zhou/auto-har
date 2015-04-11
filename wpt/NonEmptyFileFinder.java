@@ -8,8 +8,8 @@ import util.Util;
 
 public class NonEmptyFileFinder
 {
-	// modify ROOT to fit in both HTML and scripts: html or new
-	static final String ROOT = "/Users/zzy/Documents/script/new/";
+	// modify ROOT to fit in both HTML and scripts: html or js
+	static final String ROOT = "/Users/zzy/Documents/script/js/";
 	static final int MIN_LINE = 5;
 
 	public static void main(String args[]) throws IOException

@@ -9,8 +9,8 @@ import util.Util;
 
 public class FileDiff
 {
-	// modify ROOT to fit in both HTML and scripts: html or new
-	static final String ROOT = "/Users/zzy/Documents/script/new/";
+	// modify ROOT to fit in both HTML and scripts: html or js
+	static final String ROOT = "/Users/zzy/Documents/script/js/";
 
 	public static void main(String args[]) throws IOException
 	{
