@@ -322,6 +322,7 @@ public class Util
 		{
 			content += temp + "\n";
 		}
+		reader.close();
 		return content;
 	}
 

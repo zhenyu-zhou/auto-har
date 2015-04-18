@@ -1,8 +1,10 @@
 package wpt;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+// import org.openqa.selenium.By;
+// import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import util.LoadingTime;
 
 public class ChromeTest
 {
@@ -14,19 +16,37 @@ public class ChromeTest
 		// chromedriver.
 		System.setProperty("webdriver.chrome.driver",
 				"/Users/zzy/Downloads/chromedriver");
+		
+		LoadingTime lt = new LoadingTime();
 
 		ChromeDriver driver = new ChromeDriver();
 		driver.get("http://www.google.com/");
 		// Thread.sleep(5000); // Let the user actually see something!
-		WebElement searchBox = driver.findElement(By.name("q"));
+		/*WebElement searchBox = driver.findElement(By.name("q"));
 		searchBox.sendKeys("ChromeDriver");
-		searchBox.submit();
-		Long b = (Long)driver.executeScript("return window.performance.timing.secureConnectionStart;");
-		System.out.println(b);
-		b = (Long)driver.executeScript("return window.performance.timing.connectEnd;");
-		System.out.println(b);
-		b += 5;
-		System.out.println(b);
+		searchBox.submit();*/
+		
+		// https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/NavigationTiming/Overview.html
+		lt.domainLookupStart = (Long)driver.executeScript("return window.performance.timing.domainLookupStart;");
+		lt.domainLookupEnd = (Long)driver.executeScript("return window.performance.timing.domainLookupEnd;");
+		lt.connectStart = (Long)driver.executeScript("return window.performance.timing.connectStart;");
+		lt.secureConnectionStart = (Long)driver.executeScript("return window.performance.timing.secureConnectionStart;");
+		lt.connectEnd = (Long)driver.executeScript("return window.performance.timing.connectEnd;");
+		lt.requestStart = (Long)driver.executeScript("return window.performance.timing.requestStart;");
+		lt.responseStart = (Long)driver.executeScript("return window.performance.timing.responseStart;");
+		lt.responseEnd = (Long)driver.executeScript("return window.performance.timing.responseEnd;");
+		
+		long dns = lt.domainLookupEnd - lt.domainLookupStart;
+		long ssl;
+		if(lt.secureConnectionStart < 0)
+			ssl = -1;
+		else
+			ssl = lt.connectEnd - lt.secureConnectionStart;
+		long connect = lt.connectEnd - lt.connectStart;
+		long request = lt.responseStart - lt.requestStart;
+		long response = lt.responseEnd - lt.responseStart;
+
+		// Object o = driver.executeScript("return chrome.loadTimes()");
 		Thread.sleep(5000); // Let the user actually see something!
 		driver.quit();
 		
