@@ -6,11 +6,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import util.LoadingTime;
 
-public class ChromeTest
+public class ChromeTimging
 {
 	//static String script = "oFso = new ActiveXObject(\"Scripting.FileSystemObject\");  oFile = oFso.OpenTextFile(\"/Users/zzy/try/chrome.txt\",2,true); oFile.WriteLine(\"菩提本无树，明镜亦非台，本来无一物，何处惹尘埃!\");      oFile.Close();";
 
-	public static void testGoogleSearch() throws InterruptedException
+	public static void getPerformance() throws InterruptedException
 	{
 		// Optional, if not specified, WebDriver will search your path for
 		// chromedriver.
@@ -18,7 +18,6 @@ public class ChromeTest
 				"/Users/zzy/Downloads/chromedriver");
 		
 		LoadingTime lt = new LoadingTime();
-
 		ChromeDriver driver = new ChromeDriver();
 		driver.get("http://www.google.com/");
 		// Thread.sleep(5000); // Let the user actually see something!
@@ -55,6 +54,6 @@ public class ChromeTest
 
 	public static void main(String args[]) throws InterruptedException
 	{
-		testGoogleSearch();
+		getPerformance();
 	}
 }
