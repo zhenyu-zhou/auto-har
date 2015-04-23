@@ -29,7 +29,7 @@ public class AlexaTop100Crawler
 					/ SRC.length * 100 + "%: " + SRC[i]);
 			String[] tokens = SRC[i].split("[/\\\\]+");
 			String name = tokens[1];
-			HttpUtil.downloadFile(ROOT + name + "/" + "index.html", SRC[i]);
+			HttpUtil.downloadFile(ROOT + name + "_" + "index.html", SRC[i]);
 		}
 	}
 }
