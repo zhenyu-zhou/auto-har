@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd /Users/zzy/Documents/eclipse/WPT/bin
 echo "ads"
 java -cp .:/Users/zzy/Downloads/selenium-server-standalone-2.44.0.jar wpt/AdsCrawler

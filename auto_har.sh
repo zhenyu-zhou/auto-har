@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd /Users/zzy/Documents/eclipse/WPT/bin
 f1="$1"
 f2="$2"

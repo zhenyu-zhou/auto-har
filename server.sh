@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "(server.sh) usage: sh server.sh username@server.com latency bandwidth"
 remote="$1"
 laten="$2"
