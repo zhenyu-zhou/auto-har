@@ -14,6 +14,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Random;
@@ -442,4 +443,110 @@ public class Util
 		return ja;
 	}
 
+	@Deprecated
+	public static final Pattern URL = Pattern
+			.compile(new StringBuilder()
+					.append("((?:(http|https|Http|Https|rtsp|Rtsp):")
+					.append("\\/\\/(?:(?:[a-zA-Z0-9\\$\\-\\_\\.\\+\\!\\*\\'\\(\\)")
+					.append("\\,\\;\\?\\&\\=]|(?:\\%[a-fA-F0-9]{2})){1,64}(?:\\:(?:[a-zA-Z0-9\\$\\-\\_")
+					.append("\\.\\+\\!\\*\\'\\(\\)\\,\\;\\?\\&\\=]|(?:\\%[a-fA-F0-9]{2})){1,25})?\\@)?)?")
+					.append("((?:(?:[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}\\.)+")
+					// named host
+					.append("(?:")
+					// plus top level domain
+					.append("(?:aero|arpa|asia|a[cdefgilmnoqrstuwxz])")
+					.append("|(?:biz|b[abdefghijmnorstvwyz])")
+					.append("|(?:cat|com|coop|c[acdfghiklmnoruvxyz])")
+					.append("|d[ejkmoz]")
+					.append("|(?:edu|e[cegrstu])")
+					.append("|f[ijkmor]")
+					.append("|(?:gov|g[abdefghilmnpqrstuwy])")
+					.append("|h[kmnrtu]")
+					.append("|(?:info|int|i[delmnoqrst])")
+					.append("|(?:jobs|j[emop])")
+					.append("|k[eghimnrwyz]")
+					.append("|l[abcikrstuvy]")
+					.append("|(?:mil|mobi|museum|m[acdghklmnopqrstuvwxyz])")
+					.append("|(?:name|net|n[acefgilopruz])")
+					.append("|(?:org|om)")
+					.append("|(?:pro|p[aefghklmnrstwy])")
+					.append("|qa")
+					.append("|r[eouw]")
+					.append("|s[abcdeghijklmnortuvyz]")
+					.append("|(?:tel|travel|t[cdfghjklmnoprtvwz])")
+					.append("|u[agkmsyz]")
+					.append("|v[aceginu]")
+					.append("|w[fs]")
+					.append("|y[etu]")
+					.append("|z[amw]))")
+					.append("|(?:(?:25[0-5]|2[0-4]")
+					// or ip address
+					.append("[0-9]|[0-1][0-9]{2}|[1-9][0-9]|[1-9])\\.(?:25[0-5]|2[0-4][0-9]")
+					.append("|[0-1][0-9]{2}|[1-9][0-9]|[1-9]|0)\\.(?:25[0-5]|2[0-4][0-9]|[0-1]")
+					.append("[0-9]{2}|[1-9][0-9]|[1-9]|0)\\.(?:25[0-5]|2[0-4][0-9]|[0-1][0-9]{2}")
+					.append("|[1-9][0-9]|[0-9])))")
+					.append("(?:\\:\\d{1,5})?)")
+					// plus option port number
+					.append("(\\/(?:(?:[a-zA-Z0-9\\;\\/\\?\\:\\@\\&\\=\\#\\~")
+					// plus option query params
+					.append("\\-\\.\\+\\!\\*\\'\\(\\)\\,\\_])|(?:\\%[a-fA-F0-9]{2}))*)?")
+					.append("(?:\\b|$)").toString());
+	static String url_regex = "(\b(https?|ftp|file)://)?[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]";
+
+	@Deprecated
+	public static boolean isURL(String s)
+	{
+		Pattern p = Pattern.compile(url_regex);
+		Matcher matcher = p.matcher(s);
+		return matcher.matches();
+	}
+
+	@Deprecated
+	public static ArrayList<String> getURLs(String s)
+	{
+		ArrayList<String> ret = new ArrayList<String>();
+
+		Pattern p = Pattern.compile(url_regex);
+		Matcher matcher = URL.matcher(s);
+		while (matcher.find())
+		{
+			ret.add(matcher.group());
+		}
+		return ret;
+	}
+
+	public static HashSet<String> extractUrls(String input)
+	{
+		HashSet<String> result = new HashSet<String>();
+
+		Pattern pattern = Pattern
+				.compile("\\b(((ht|f)tp(s?)\\:\\/\\/|~\\/|\\/)|www.)"
+						+ "(\\w+:\\w+@)?(([-\\w]+\\.)+(com|org|net|gov"
+						+ "|mil|biz|info|mobi|name|aero|jobs|museum"
+						+ "|travel|[a-z]{2}))(:[\\d]{1,5})?"
+						+ "(((\\/([-\\w~!$+|.,=]|%[a-f\\d]{2})+)+|\\/)+|\\?|#)?"
+						+ "((\\?([-\\w~!$+|.,*:]|%[a-f\\d{2}])+=?"
+						+ "([-\\w~!$+|.,*:=]|%[a-f\\d]{2})*)"
+						+ "(&(?:[-\\w~!$+|.,*:]|%[a-f\\d{2}])+=?"
+						+ "([-\\w~!$+|.,*:=]|%[a-f\\d]{2})*)*)*"
+						+ "(#([-\\w~!$+|.,*:=]|%[a-f\\d]{2})*)?\\b");
+
+		Matcher matcher = pattern.matcher(input);
+		while (matcher.find())
+		{
+			String temps = matcher.group();
+			String[] tokens = temps.split("[/]+");
+			if(temps.startsWith("/") || !(tokens[tokens.length-1].contains(".")))
+				continue;
+			System.out.println(tokens);
+			int len = tokens.length;
+			if(tokens[0].contains("http"))
+				len--;
+			if(len < 2)
+				continue;
+			result.add(temps);
+		}
+
+		return result;
+	}
 }

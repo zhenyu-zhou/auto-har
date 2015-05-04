@@ -9,4 +9,6 @@ public class LoadingTime
 			redirectEnd, redirectStart, requestStart, responseEnd,
 			responseStart, secureConnectionStart, unloadEventEnd,
 			unloadEventStart;
+	
+	public Long connect, request, response;
 }

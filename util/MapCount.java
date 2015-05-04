@@ -58,4 +58,14 @@ public class MapCount<T>
 	{
 		count.clear();
 	}
+	@Override
+	public String toString()
+	{
+		String ret = "";
+		for(T t : count.keySet())
+		{
+			ret += t+": "+count.get(t)+"\n";
+		}
+		return ret;
+	}
 }

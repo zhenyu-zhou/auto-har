@@ -16,8 +16,8 @@ public class HARReaderPhantomjs
 	final static String[] DIR = {
 			"/Users/zzy/Downloads/phantomjs-2.0.0-macosx/bin/bg.har",
 			"/Users/zzy/Downloads/phantomjs-2.0.0-macosx/bin/out.har" };
-	static String OUT_DIR = "/Users/zzy/Downloads/loading time/spdy/10/tra_s1";
 	static ArrayList<String>[] table = null;
+	static Hashtable<String, Integer> timings = new Hashtable<String, Integer>();
 
 	static void loadTable(int num) throws IOException, JSONException
 	{
@@ -35,10 +35,22 @@ public class HARReaderPhantomjs
 			try
 			{
 				name = ((JSONObject) req.get("request")).getString("url");
-				// if(num == 1)
-				// System.out.println(name);
 				String[] tokens = name.split("/");
 				name = tokens[tokens.length - 1];
+				if(num == 0)
+				{
+					// positive??
+					int time = req.getInt("time");
+					String startedDateTime = req.getString("startedDateTime");
+					tokens = startedDateTime.split("[.:Z]");
+					int st = Integer.parseInt(tokens[tokens.length-3]);
+					st *= 60;
+					st += Integer.parseInt(tokens[tokens.length-2]);
+					st *= 1000;
+					st += Integer.parseInt(tokens[tokens.length-1]);
+					// System.out.println(name+": "+st+" "+time);
+					timings.put(name, st+time);
+				}
 				// int statusCode = ((JSONObject)
 				// req.get("response")).getInt("status");
 				// if(statusCode == 200) // HTTP OK
@@ -68,6 +80,18 @@ public class HARReaderPhantomjs
 		if (table[0].size() > 0)
 		{
 			System.out.println("diff: " + table[0]);
+			int max = -1;
+			String slowest_obj = "";
+			for(int i = 0; i < table[0].size(); i++)
+			{
+				// System.out.println(table[0]);
+				if(timings.get(table[0].get(i)) > max)
+				{
+					max = timings.get(table[0].get(i));
+					slowest_obj = table[0].get(i);
+				}
+			}
+			System.out.println("Slowest: "+slowest_obj+": "+max);
 			System.out.println();
 		}
 	}
