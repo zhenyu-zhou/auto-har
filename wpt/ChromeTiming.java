@@ -6,11 +6,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import util.AlexaSites;
 import util.LoadingTime;
 
-public class ChromeTimging
+public class ChromeTiming
 {
 	static ArrayList<LoadingTime> http_time = new ArrayList<LoadingTime>(),
 			https_time = new ArrayList<LoadingTime>();
@@ -21,7 +22,7 @@ public class ChromeTimging
 		// chromedriver.
 		System.setProperty("webdriver.chrome.driver",
 				"/Users/zzy/Downloads/chromedriver");
-
+		
 		LoadingTime lt = new LoadingTime();
 		ChromeDriver driver = new ChromeDriver();
 		driver.get(url);
@@ -29,7 +30,7 @@ public class ChromeTimging
 		/*WebElement searchBox = driver.findElement(By.name("q"));
 		searchBox.sendKeys("ChromeDriver");
 		searchBox.submit();*/
-
+		
 		// https://dvcs.w3.org/hg/webperf/raw-file/tip/specs/NavigationTiming/Overview.html
 		lt.domainLookupStart = (Long) driver
 				.executeScript("return window.performance.timing.domainLookupStart;");
