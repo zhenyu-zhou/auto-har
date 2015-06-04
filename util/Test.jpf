@@ -1,0 +1,8 @@
+target = util.Test
+
+listener=gov.nasa.jpf.listener.PreciseRaceDetector
+
+report.console.property_violation=error
+
+sourcepath=/Users/zzy/Documents/eclipse/WPT/src/
+classpath=/Users/zzy/Documents/eclipse/WPT/bin

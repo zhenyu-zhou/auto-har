@@ -3,6 +3,7 @@ package util;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,6 +18,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
@@ -25,6 +28,8 @@ import java.util.regex.Pattern;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import difflib.*;
 
 /**
  * The utility class. Contain many useful methods.
@@ -536,17 +541,59 @@ public class Util
 		{
 			String temps = matcher.group();
 			String[] tokens = temps.split("[/]+");
-			if(temps.startsWith("/") || !(tokens[tokens.length-1].contains(".")))
+			if (temps.startsWith("/")
+					|| !(tokens[tokens.length - 1].contains(".")))
 				continue;
 			System.out.println(tokens);
 			int len = tokens.length;
-			if(tokens[0].contains("http"))
+			if (tokens[0].contains("http"))
 				len--;
-			if(len < 2)
+			if (len < 2)
 				continue;
 			result.add(temps);
 		}
 
 		return result;
+	}
+
+	private static List<String> fileToLines(String filename) throws FileNotFoundException
+	{
+		List<String> lines = new LinkedList<String>();
+		String line = "";
+			BufferedReader in = new BufferedReader(new FileReader(filename));
+			try
+			{
+				while ((line = in.readLine()) != null)
+				{
+					lines.add(line);
+				}
+			} catch (IOException e)
+			{
+				e.printStackTrace();
+			}
+		return lines;
+	}
+
+	public static boolean isFileSame(String path1, String path2) throws FileNotFoundException
+	{
+		return isFileSameWithThre(path1, path2, 0);
+	}
+	
+	public static boolean isFileSameWithThre(String path1, String path2, int thre) throws FileNotFoundException
+	{
+        List<String> original = fileToLines(path1);
+        List<String> revised  = fileToLines(path2);
+        
+        Patch patch = DiffUtils.diff(original, revised);
+        List<Delta> delta = patch.getDeltas();
+        if(delta.size() <= thre)
+        {
+        	return true;
+        }
+        /*for (Delta d: delta) 
+        {
+                System.out.println(d);
+        }*/
+		return false;
 	}
 }
