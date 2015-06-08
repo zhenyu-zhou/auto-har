@@ -12,11 +12,11 @@ import util.Util;
 public class QoSCmp
 {
 	static final String DIR = "/Users/zzy/try/crawler/";
-	static final int MAX_HIGHLY_ACTIVE = 5;
+	static final int MAX_HIGHLY_ACTIVE = 1;
 	static int st_mon = -1, st_day = -1;//, month = -1, day = -1;
 	static LocalDate now = null;
 
-	static boolean cmp(File dir, ArrayList<Integer> arr)
+	static boolean cmp(File dir, ArrayList<Integer> change_period, ArrayList<Double> change_percentage)
 	{
 		// System.out.println("In folder: " + dir.getAbsolutePath());
 		String preffix = null, ext = null;
@@ -37,7 +37,7 @@ public class QoSCmp
 		LocalDate d = LocalDate.of(2015, st_mon, st_day);
 		now = LocalDate.of(2015, 4, 13);
 		boolean change = false, inSeq = true;
-		int len = 0, min_len = Integer.MAX_VALUE;
+		int len = 0, min_len = Integer.MAX_VALUE, total_period = 0, change_times = 0;
 		while(ChronoUnit.DAYS.between(d, now) > 0)//(m < month || (m == month && d < day))
 		{
 			change = false;
@@ -53,12 +53,14 @@ public class QoSCmp
 				try{
 					find = true;
 					change = !Util.isFileSameWithThre(n1, n2, MAX_HIGHLY_ACTIVE);
+					total_period++;
 				}
 				catch(FileNotFoundException fnfe)
 				{
 					// System.err.println("File not found!");
 					change = false;
 					find = false;
+					total_period--;
 					d = d.plusDays(1);
 					day = d.getDayOfMonth(); month = d.getMonthValue();
 					n2 = preffix+month+"."+day+ext;
@@ -68,6 +70,11 @@ public class QoSCmp
 			}
 			if(!find)
 				break;
+			
+			if(change)
+			{
+				change_times++;
+			}
 			
 			if(change && inSeq)
 			{
@@ -94,7 +101,8 @@ public class QoSCmp
 		if(min_len < Integer.MAX_VALUE)
 		{
 			// System.out.println("change!!");
-			arr.add(min_len);
+			change_period.add(min_len);
+			change_percentage.add( ((double)change_times)/total_period);
 			return true;
 		}
 		
@@ -117,17 +125,19 @@ public class QoSCmp
 			st_mon = 4; st_day = 10;
 		}
 		ArrayList<Integer> change_period = new ArrayList<Integer>();
+		ArrayList<Double> change_percentage = new ArrayList<Double>();
 		for (File sub_dir : dir.listFiles())
 		{
 			if (!sub_dir.isDirectory() || sub_dir.getName().startsWith("."))
 				continue;
-			cmp(sub_dir, change_period);
+			cmp(sub_dir, change_period, change_percentage);
 			// System.out.println("in for: "+change_period);
 		}
 		
 		// .DS_STORE
 		System.out.println("Change number: "+change_period.size()+"/"+(dir.listFiles().length-1));
 		System.out.println(change_period);
+		System.out.println(change_percentage);
 		return change_period.size();
 	}
 

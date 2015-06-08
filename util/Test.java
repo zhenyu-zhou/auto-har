@@ -9,8 +9,10 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -100,10 +102,13 @@ public class Test
 			}
 		}*/
 		
-		ArrayList<Integer> a = new ArrayList<Integer>();
+		/*ArrayList<Integer> a = new ArrayList<Integer>();
 		int num = 9;
 		g(a, num);
 		System.out.println(a);
-		System.out.println(num);
+		System.out.println(num);*/
+		
+		List<Integer> arr = Arrays.asList(1, 2);
+		System.out.println(arr);
 	}
 }
