@@ -108,7 +108,8 @@ public class Test
 		System.out.println(a);
 		System.out.println(num);*/
 		
-		List<Integer> arr = Arrays.asList(1, 2);
-		System.out.println(arr);
+		int a = 1;
+		assert(a==0);
+		System.out.println("huhu");
 	}
 }

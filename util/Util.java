@@ -1,6 +1,7 @@
 package util;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -10,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
@@ -280,6 +282,21 @@ public class Util
 		OutputStream os = new FileOutputStream(outFile);
 		os.write(content.getBytes());
 		os.close();
+	}
+
+	public static void writeFileAppend(String path, String content)
+			throws IOException
+	{
+		File outFile = new File(path);
+		if (!outFile.getParentFile().exists())
+			outFile.getParentFile().mkdirs();
+		if (!outFile.exists())
+			outFile.createNewFile();
+
+		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(
+				new FileOutputStream(outFile, true)));
+		out.write(content);
+		out.close();
 	}
 
 	/**
@@ -556,44 +573,47 @@ public class Util
 		return result;
 	}
 
-	private static List<String> fileToLines(String filename) throws FileNotFoundException
+	private static List<String> fileToLines(String filename)
+			throws FileNotFoundException
 	{
 		List<String> lines = new LinkedList<String>();
 		String line = "";
-			BufferedReader in = new BufferedReader(new FileReader(filename));
-			try
+		BufferedReader in = new BufferedReader(new FileReader(filename));
+		try
+		{
+			while ((line = in.readLine()) != null)
 			{
-				while ((line = in.readLine()) != null)
-				{
-					lines.add(line);
-				}
-			} catch (IOException e)
-			{
-				e.printStackTrace();
+				lines.add(line);
 			}
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 		return lines;
 	}
 
-	public static boolean isFileSame(String path1, String path2) throws FileNotFoundException
+	public static boolean isFileSame(String path1, String path2)
+			throws FileNotFoundException
 	{
 		return isFileSameWithThre(path1, path2, 0);
 	}
-	
-	public static boolean isFileSameWithThre(String path1, String path2, int thre) throws FileNotFoundException
+
+	public static boolean isFileSameWithThre(String path1, String path2,
+			int thre) throws FileNotFoundException
 	{
-        List<String> original = fileToLines(path1);
-        List<String> revised  = fileToLines(path2);
-        
-        Patch patch = DiffUtils.diff(original, revised);
-        List<Delta> delta = patch.getDeltas();
-        if(delta.size() <= thre)
-        {
-        	return true;
-        }
-        /*for (Delta d: delta) 
-        {
-                System.out.println(d);
-        }*/
+		List<String> original = fileToLines(path1);
+		List<String> revised = fileToLines(path2);
+
+		Patch patch = DiffUtils.diff(original, revised);
+		List<Delta> delta = patch.getDeltas();
+		if (delta.size() <= thre)
+		{
+			return true;
+		}
+		/*for (Delta d: delta) 
+		{
+		        System.out.println(d);
+		}*/
 		return false;
 	}
 }

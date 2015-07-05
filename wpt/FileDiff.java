@@ -61,7 +61,7 @@ public class FileDiff
 					{
 						content += s+"\n";
 					}
-					Util.writeFile(outPath, content);;
+					Util.writeFile(outPath, content);
 				}
 			}
 		}
