@@ -73,4 +73,10 @@ public class Pair<M, N extends Number> implements Comparable<Pair<M, N>>
 	{
 		return n;
 	}
+	
+	public void set(M m_, N n_)
+	{
+		m = m_;
+		n = n_;
+	}
 }
