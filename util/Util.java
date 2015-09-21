@@ -284,6 +284,16 @@ public class Util
 		os.close();
 	}
 
+	/**
+	 * Append the content to a certain file
+	 * 
+	 * @param path
+	 *            The path of the file
+	 * @param content
+	 *            The content needed to written
+	 * @author zzy
+	 * @throws IOException
+	 */
 	public static void writeFileAppend(String path, String content)
 			throws IOException
 	{
@@ -465,6 +475,9 @@ public class Util
 		return ja;
 	}
 
+	/**
+	 * Pattern for URL
+	 */
 	@Deprecated
 	public static final Pattern URL = Pattern
 			.compile(new StringBuilder()
@@ -515,6 +528,14 @@ public class Util
 					.append("(?:\\b|$)").toString());
 	static String url_regex = "(\b(https?|ftp|file)://)?[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]";
 
+	/**
+	 * Determine whether the string is URL
+	 * 
+	 * @author zzy
+	 * @param s
+	 *            The given string
+	 * @return True if the string is URL
+	 */
 	@Deprecated
 	public static boolean isURL(String s)
 	{
@@ -523,6 +544,14 @@ public class Util
 		return matcher.matches();
 	}
 
+	/**
+	 * Extract all URLs from a given string
+	 * 
+	 * @author zzy
+	 * @param s
+	 *            The given string
+	 * @return The ArrayList of all URLs
+	 */
 	@Deprecated
 	public static ArrayList<String> getURLs(String s)
 	{
@@ -537,6 +566,14 @@ public class Util
 		return ret;
 	}
 
+	/**
+	 * Extract all URLs from a given string
+	 * 
+	 * @author zzy
+	 * @param s
+	 *            The given string
+	 * @return The HashSet of all URLs
+	 */
 	public static HashSet<String> extractUrls(String input)
 	{
 		HashSet<String> result = new HashSet<String>();
@@ -573,6 +610,15 @@ public class Util
 		return result;
 	}
 
+	/**
+	 * Convert a file into separate lines
+	 * 
+	 * @author zzy
+	 * @param filename
+	 *            Path to the file
+	 * @return The List of all lines
+	 * @throws FileNotFoundException
+	 */
 	private static List<String> fileToLines(String filename)
 			throws FileNotFoundException
 	{
@@ -592,12 +638,34 @@ public class Util
 		return lines;
 	}
 
+	/**
+	 * Determine whether the two files are the same
+	 * 
+	 * @author zzy
+	 * @param path1
+	 * @param path2
+	 *            Path to the files
+	 * @return True if the files are the same
+	 * @throws FileNotFoundException
+	 */
 	public static boolean isFileSame(String path1, String path2)
 			throws FileNotFoundException
 	{
 		return isFileSameWithThre(path1, path2, 0);
 	}
 
+	/**
+	 * Determine whether the two files are the same with a threshold, which
+	 * stands for the max lines can be different
+	 * @author zzy
+	 * @param path1
+	 * @param path2
+	 *            Path to the files
+	 * @param thre
+	 * 		The max number of lines can be different
+	 * @return True if the files have no more than thre lines of difference
+	 * @throws FileNotFoundException
+	 */
 	public static boolean isFileSameWithThre(String path1, String path2,
 			int thre) throws FileNotFoundException
 	{
@@ -610,10 +678,6 @@ public class Util
 		{
 			return true;
 		}
-		/*for (Delta d: delta) 
-		{
-		        System.out.println(d);
-		}*/
 		return false;
 	}
 }
