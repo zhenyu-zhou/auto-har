@@ -143,8 +143,7 @@ public class ScriptCrawler
 			"https://s0.2mdn.net/879366/dfa7banner_flash_inpage_rendering_lib_200_58.js",
 			"http://c.betrad.com/a/n/321/8575.js",
 			"http://s.ytimg.com/yts/jsbin/spf-vfloWUwJA/spf.js",
-			"http://s.ytimg.com/yts/jsbin/www-en_US-vflss31LC/base.js"
-	};
+			"http://s.ytimg.com/yts/jsbin/www-en_US-vflss31LC/base.js" };
 
 	static HashSet<String> dup = new HashSet<String>();
 	static MapCount<String> mc = new MapCount<String>();
@@ -152,13 +151,15 @@ public class ScriptCrawler
 	public static void main(String args[]) throws IOException
 	{
 		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
 		int month = cal.get(Calendar.MONTH) + 1;
 		int day = cal.get(Calendar.DATE);
-		System.out.println(month+"."+day);
+		System.out.println(month + "." + day);
 
 		for (int i = 0; i < SRC.length; i++)
 		{
-			System.out.println("Processing... "+i+" "+(i+1.0)/SRC.length*100+"%");
+			System.out.println("Processing... " + i + " " + (i + 1.0)
+					/ SRC.length * 100 + "%");
 			String[] tokens = SRC[i].split("[/\\\\]+");
 			String fullname = tokens[tokens.length - 1];
 			int index = fullname.lastIndexOf(".");
@@ -169,21 +170,22 @@ public class ScriptCrawler
 			}
 			String name = fullname.substring(0, index);
 			String ext = fullname.substring(index);
-			fullname = name + "-" + month + "." + day + ext;
+			fullname = name + "-" + year + "." + month + "." + day + ext;
 			// System.out.println(fullname);
 			// System.out.println(ext);
 			if (dup.contains(name))
 			{
 				System.err.println("Duplicated name: " + name);
 				// continue;
-				if(mc.containsKey(name))
+				if (mc.containsKey(name))
 				{
 					mc.add(name);
-					name += "zzy"+mc.get(name);
+					name += "zzy" + mc.get(name);
 				}
 				else
 				{
-					mc.add(name); mc.add(name);
+					mc.add(name);
+					mc.add(name);
 					name += "zzy2";
 				}
 			}

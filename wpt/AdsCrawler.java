@@ -74,6 +74,7 @@ public class AdsCrawler
 	public static void main(String args[]) throws IOException
 	{
 		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
 		int month = cal.get(Calendar.MONTH) + 1;
 		int day = cal.get(Calendar.DATE);
 		System.out.println(month + "." + day);
@@ -92,7 +93,7 @@ public class AdsCrawler
 			}
 			String name = fullname.substring(0, index);
 			String ext = fullname.substring(index);
-			fullname = name + "-" + month + "." + day + ext;
+			fullname = name + "-" + year + "." + month + "." + day + ext;
 			if (dup.contains(name))
 			{
 				System.err.println("Duplicated name: " + name);

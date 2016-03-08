@@ -135,7 +135,7 @@ public class IconCrawler
 			"https://yt3.ggpht.com/-EpAxQmb6CHc/AAAAAAAAAAI/AAAAAAAAAAA/z6SA8TlQle4/s88-c-k-no/photo.jpg",
 			"https://yt3.ggpht.com/-XlhRvNh5BL4/AAAAAAAAAAI/AAAAAAAAAAA/uCLjcidRS0E/s88-c-k-no/photo.jpg",
 			"https://i.ytimg.com/i/YfdidRxbB8Qhf0Nx7ioOYw/1.jpg",
-			
+
 	};
 
 	static final String ROOT = "/Users/zzy/Documents/script/icon/";
@@ -145,8 +145,10 @@ public class IconCrawler
 	public static void main(String args[]) throws IOException
 	{
 		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
 		int month = cal.get(Calendar.MONTH) + 1;
 		int day = cal.get(Calendar.DATE);
+
 		System.out.println(month + "." + day);
 
 		for (int i = 0; i < SRC.length; i++)
@@ -163,7 +165,7 @@ public class IconCrawler
 			}
 			String name = fullname.substring(0, index);
 			String ext = fullname.substring(index);
-			fullname = name + "-" + month + "." + day + ext;
+			fullname = name + "-" + year + "." + month + "." + day + ext;
 			if (dup.contains(name))
 			{
 				System.err.println("Duplicated name: " + name);
