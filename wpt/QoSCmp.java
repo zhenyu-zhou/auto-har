@@ -143,7 +143,9 @@ public class QoSCmp
 
 	public static void main(String args[]) throws IOException
 	{
-		now = LocalDate.now();
+		System.err.println("FIXME: add year 2016!!");
+		
+		/* now = LocalDate.now();
 		
 		File dir = new File(DIR);
 		if (!dir.isDirectory())
@@ -161,6 +163,6 @@ public class QoSCmp
 				continue;
 			}
 			analysis(sub_dir);
-		}
+		} */
 	}
 }
