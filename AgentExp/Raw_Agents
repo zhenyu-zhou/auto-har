@@ -1,0 +1,1296 @@
+
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML Basic 1.0//EN"
+"http://www.w3.org/TR/xhtml-basic/xhtml-basic10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="description" content="List of typical WAP browser identification codes" />
+<meta name="keywords" content="WAP, user-agent, user agent, HTTP header, browser" />
+<title>WAP User Agents</title>
+<link rel="stylesheet" type="text/css" href="http://webcab.de/screen.css"
+media="screen" />
+</head>
+<body>
+<h1 class="logo"><span class="logoimg"><img src="http://webcab.de/images/logoxs2.gif"
+alt="WebCab.de: " height="40" width="78" /></span>WAP User Agents</h1>
+<div class="clear"></div><div class="navbar" title="Navigation bar"><a href=
+"http://webcab.de/">Home</a> | <a href=
+"http://webcab.de/s.htm">Services</a> | <a href=
+"http://webcab.de/links.htm">Links</a> | <a href=
+"http://webcab.de/about.htm">About</a> | <a href=
+"http://webcab.de/contact.htm">Contact</a> | <a href=
+"http://webcab.de/news.htm">News</a> | <a href=
+"http://webcab.de/search.htm">Search</a></div>
+<div class="body">
+<p>Webmasters like to know which
+kind of browsers are used to retrieve their pages. However, the HTTP header field
+&quot;user-agent&quot; does not necessarily provide a lot of information about the
+browser, the mobile device if applicable and its manufacturer. Therefore, WebCab.de wants
+to help to identify the WAP browsers. The table below references some entries of
+WebCab.de's server log files.</p>
+<table class="border" summary="List of HTTP user agents, device and browser names, and manufacturers">
+<tr>
+<th class="black">HTTP header field &quot;user-agent&quot;</th>
+<th class="black">Device</th>
+<th class="black">Browser</th>
+<th class="black">Manufacturer</th>
+</tr>
+<tr>
+<td class="white">4thpass KBrowser/2.1</td>
+<td class="white">&nbsp;</td>
+<td class="white">KBrowser 2.1</td>
+<td class="white">4thpass.com</td>
+</tr>
+<tr>
+<td class="white">4thpass KBrowser/2.1 j2me</td>
+<td class="white">&nbsp;</td>
+<td class="white">KBrowser 2.1</td>
+<td class="white">4thpass.com</td>
+</tr>
+<tr>
+<td class="white">4thpass.com KBrowser 1.0</td>
+<td class="white">&nbsp;</td>
+<td class="white">KBrowser 1.0</td>
+<td class="white">4thpass.com</td>
+</tr>
+<tr>
+<td class="white">ABRAXAS-EURIT4000</td>
+<td class="white">Eurit4000</td>
+<td class="white">&nbsp;</td>
+<td class="white">Ascom</td>
+</tr>
+<tr>
+<td class="white">ACER-Pro80/1.02 UP/4.1.20i UP.Browser/4.1.20i-XXXX</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">Alcatel-BE3/1.0 UP/4.1.8h</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Alcatel</td>
+</tr>
+<tr>
+<td class="white">Alcatel-BE4/1.0 UP/4.1.19e</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Alcatel</td>
+</tr>
+<tr>
+<td class="white">Alcatel-BE5/1.5 UP/4.1.19e</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Alcatel</td>
+</tr>
+<tr>
+<td class="white">Alcatel-BF3/1.0 UP.Browser/4.1.23a</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Alcatel</td>
+</tr>
+<tr>
+<td class="white">Alcatel-BF4/1.0 UP.Browser/4.1.23a</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Alcatel</td>
+</tr>
+<tr>
+<td class="white">Alcatel-BF5/1.0 UP.Browser/5.0.3.1</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Alcatel</td>
+</tr>
+<tr>
+<td class="white">Alcatel-BG3/1.0 UP.Browser/5.0.3.1.2</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Alcatel</td>
+</tr>
+<tr>
+<td class="white">AnnyWay WAP/1.2</td>
+<td class="white">&nbsp;</td>
+<td class="white">Anny Way WAP Browser</td>
+<td class="white">Anny Way</td>
+</tr>
+<tr>
+<td class="white">Aptus WAP.INFO.PL search engine</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">AUR PALM WAPPER (WAP 1.1)</td>
+<td class="white">&nbsp;</td>
+<td class="white">AUR PALM WAPPER</td>
+<td class="white">AU-System</td>
+</tr>
+<tr>
+<td class="white">AUS PALM WAPPER</td>
+<td class="white">&nbsp;</td>
+<td class="white">AUS PALM WAPPER</td>
+<td class="white">AU-System</td>
+</tr>
+<tr>
+<td class="white">BlackBerry/3.5.0</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Research In Motion (RIM)</td>
+</tr>
+<tr>
+<td class="white">Boonda WAP Browser 1.0</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">ccWAP-Browser</td>
+<td class="white">&nbsp;</td>
+<td class="white">ccWAP-Browser</td>
+<td class="white">CheckCom</td>
+</tr>
+<tr>
+<td class="white">EricssonA2618s/R1A</td>
+<td class="white">A2618</td>
+<td class="white">&nbsp;</td>
+<td class="white">Ericsson</td>
+</tr>
+<tr>
+<td class="white">EricssonA2628s/R2A</td>
+<td class="white">A2628</td>
+<td class="white">&nbsp;</td>
+<td class="white">Ericsson</td>
+</tr>
+<tr>
+<td class="white">EricssonR320/R1A</td>
+<td class="white">R320s</td>
+<td class="white">&nbsp;</td>
+<td class="white">Ericsson</td>
+</tr>
+<tr>
+<td class="white">EricssonR520/R201</td>
+<td class="white">R520</td>
+<td class="white">&nbsp;</td>
+<td class="white">Ericsson</td>
+</tr>
+<tr>
+<td class="white">EricssonT20/R2A</td>
+<td class="white">T20</td>
+<td class="white">&nbsp;</td>
+<td class="white">Ericsson</td>
+</tr>
+<tr>
+<td class="white">EricssonT39/R201</td>
+<td class="white">T39</td>
+<td class="white">&nbsp;</td>
+<td class="white">Ericsson</td>
+</tr>
+<tr>
+<td class="white">EricssonT65/R101</td>
+<td class="white">T65</td>
+<td class="white">&nbsp;</td>
+<td class="white">Ericsson</td>
+</tr>
+<tr>
+<td class="white">EricssonT68/R101</td>
+<td class="white">T68</td>
+<td class="white">&nbsp;</td>
+<td class="white">Ericsson</td>
+</tr>
+<tr>
+<td class="white">EzWAPBrowser1.0-WAP</td>
+<td class="white">&nbsp;</td>
+<td class="white">EzWAP</td>
+<td class="white">EZOS</td>
+</tr>
+<tr>
+<td class="white">HCI-HGC610E/001.1a UP/4.1.20i</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">HD-MMD1010/001.1a UP/4.1.20i</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">HD-TX20B001.1a/ UP/4.1.20i</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">HEI-HGC610E/001.1a UP/4.1.20i</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">jBrowser</td>
+<td class="white">&nbsp;</td>
+<td class="white">jBrowser</td>
+<td class="white">Jataayu</td>
+</tr>
+<tr>
+<td class="white">jBrowser-Desktop</td>
+<td class="white">&nbsp;</td>
+<td class="white">jBrowser</td>
+<td class="white">Jataayu</td>
+</tr>
+<tr>
+<td class="white">jBrowser-J2ME</td>
+<td class="white">&nbsp;</td>
+<td class="white">jBrowser</td>
+<td class="white">Jataayu</td>
+</tr>
+<tr>
+<td class="white">jBrowser-WAP</td>
+<td class="white">&nbsp;</td>
+<td class="white">jBrowser</td>
+<td class="white">Jataayu</td>
+</tr>
+<tr>
+<td class="white">Jingo Wapd 2.2</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">Klondike/1.50</td>
+<td class="white">&nbsp;</td>
+<td class="white">Klondike</td>
+<td class="white">Apache Software Consulting</td>
+</tr>
+<tr>
+<td class="white">LGE-DB520/1.0 UP.Browser/4.1.22b1</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">m-crawler/1.0 WAP</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">m-crawler/2.5 WAP (m-crawler@m-find.com; http://m-find.com)</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">M3GATE/0.3</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">Materna-WAPPreview 1.2.1</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Dr. Materna</td>
+</tr>
+<tr>
+<td class="white">MC218 2.0 WAP1.1</td>
+<td class="white">MC218</td>
+<td class="white">&nbsp;</td>
+<td class="white">Ericsson</td>
+</tr>
+<tr>
+<td class="white">Mitsu/1.1.A</td>
+<td class="white">Trium</td>
+<td class="white">&nbsp;</td>
+<td class="white">Mitsubishi</td>
+</tr>
+<tr>
+<td class="white">Mitsu/1.2.A (Eclipse)</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Mitsubishi</td>
+</tr>
+<tr>
+<td class="white">MobileExplorer/3.00 (Mozilla/1.22; compatible; MMEF300; Microsoft; Windows; GenericLarge)</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Microsoft</td>
+</tr>
+<tr>
+<td class="white">MO02 UP/4.1.17r</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">MOCOCO's WapBrowser</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">MOT-2000./10.01 UP/4.1.21b</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-2100./11.03 UP.Browser/4.1.24f</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-2102./11.03 UP.Browser/4.1.24f</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-28/04.02 UP/4.1.17r</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-32/01.00 UP.Browser/4.1.23</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-40/04.04 UP/4.1.17r</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-43/04.05 UP/4.1.17r</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-61/04.02 UP/4.1.17r</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-62/04.05 UP/4.1.17r UP.Browser/4.1.17r-XXXX</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-70/00.01 UP/4.1.21b</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-76/00.01 UP.Browser/4.1.23</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-AF/0.0.22 UP/4.0.5n</td>
+<td class="white">TIMEPORT P7389i</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-AF/4.1.8 UP/4.1.16s</td>
+<td class="white">TIMEPORT 260</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-C2/4.1.8 UP/4.1.16s</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-C4/0.0.21 UP/4.0.5m</td>
+<td class="white">TALKABOUT T2288</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-C4/4.1.8 UP/4.1.16s</td>
+<td class="white">TALKABOUT T2288</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-CB/0.0.21 UP/4.0.5m</td>
+<td class="white">TIMEPORT P7389</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-CF/00.26.31 UP/4.1.16f</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-D1/0.0.22 UP/4.0.5n</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-D3/0.0.22 UP/4.0.5n</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-D5/0.0.22 UP/4.0.5n</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-D8/4.1.8 UP/4.1.16s</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-DC/4.1.9 UP/4.1.19i</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-DD/0.0.22 UP/4.0.5n</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-DF/0.0.22 UP/4.0.5n</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-F0/4.1.8 UP/4.1.16s</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-F4/4.1.7 UP/4.1.16p</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-F5/4.1.9 UP.Browser/4.1.23c</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-F6/10.36.32 UP.Browser/4.1.23d</td>
+<td class="white">Accompli 008</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-P2K-C/10.01 UP/4.1.21b</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-PAN4_/11.03 UP.Browser/4.1.23c</td>
+<td class="white">T280</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-PHX4_/11.03 UP.Browser/4.1.23c</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-SAP4_/11.03 UP.Browser/4.1.23c</td>
+<td class="white">V66</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-SAP8A/11.03 UP.Browser/4.1.23c</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-T280M/02.27.00I MIB/1.2</td>
+<td class="white">T280</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-T720/G_05.31.05R MIB/2.0 Profile/MIDP-1.0 Configuration/CLDC-1.0</td>
+<td class="white">T720</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-v200./10.01 UP/4.1.21b UP.Browser/4.1.21b-XXXX</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">MOT-V708_/11.03 UP.Browser/4.1.23c</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Motorola</td>
+</tr>
+<tr>
+<td class="white">Mozilla/1.22 (compatible; MMEF20; CellPhone; Benefon Q)</td>
+<td class="white">Benefon Q</td>
+<td class="white">&nbsp;</td>
+<td class="white">Benefon</td>
+</tr>
+<tr>
+<td class="white">Mozilla/1.22 (compatible; MMEF20; Cellphone; Sony CMD-J5)</td>
+<td class="white">CMD-J5</td>
+<td class="white">&nbsp;</td>
+<td class="white">Sony</td>
+</tr>
+<tr>
+<td class="white">Mozilla/1.22 (compatible; MMEF20; Cellphone; Sony CMD-J7/J70)</td>
+<td class="white">CMD-J7/J70</td>
+<td class="white">&nbsp;</td>
+<td class="white">Sony</td>
+</tr>
+<tr>
+<td class="white">Mozilla/1.22 (compatible; MMEF20; Cellphone; Sony CMD-Z5)</td>
+<td class="white">CMD-Z5</td>
+<td class="white">&nbsp;</td>
+<td class="white">Sony</td>
+</tr>
+<tr>
+<td class="white">Mozilla/1.22 (compatible; MMEF20; Cellphone; Sony CMD-Z7)</td>
+<td class="white">CMD-Z7</td>
+<td class="white">&nbsp;</td>
+<td class="white">Sony</td>
+</tr>
+<tr>
+<td class="white">Mozilla/2.0 (compatible; Go.Web/6.2; HandHTTP 1.1; Elaine/1.0; RIM957 )</td>
+<td class="white">RIM957</td>
+<td class="white">&nbsp;</td>
+<td class="white">RIM</td>
+</tr>
+<tr>
+<td class="white">NEC-N8/1.0 UP.Browser/6.1.0.4.128 (GUI) MMP/1.0</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">NEC</td>
+</tr>
+<tr>
+<td class="white">Nokia 7110 v0.13 (compatible; YOSPACE SmartPhone Emulator 1.0)</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">YOSPACE</td>
+</tr>
+<tr>
+<td class="white">Nokia-MIT-Browser/3.0</td>
+<td class="white">&nbsp;</td>
+<td class="white">Nokia Mobile Internet Toolkit 3.0</td>
+<td class="white">Nokia</td>
+</tr>
+<tr>
+<td class="white">Nokia-WAP-Toolkit/2.0</td>
+<td class="white">&nbsp;</td>
+<td class="white">Nokia WAP Toolkit</td>
+<td class="white">Nokia</td>
+</tr>
+<tr>
+<td class="white">Nokia-WAPToolkit/1.2  googlebot(at)googlebot.com</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Google</td>
+</tr>
+<tr>
+<td class="white">Nokia3330/1.0 (03.05)</td>
+<td class="white">3330</td>
+<td class="white">&nbsp;</td>
+<td class="white">Nokia</td>
+</tr>
+<tr>
+<td class="white">Nokia3350/1.0 (05.11)</td>
+<td class="white">3350</td>
+<td class="white">&nbsp;</td>
+<td class="white">Nokia</td>
+</tr>
+<tr>
+<td class="white">Nokia3360/1.2.1 (1.04)</td>
+<td class="white">3360</td>
+<td class="white">&nbsp;</td>
+<td class="white">Nokia</td>
+</tr>
+<tr>
+<td class="white">Nokia5510/1.0 (03.42)</td>
+<td class="white">5510</td>
+<td class="white">&nbsp;</td>
+<td class="white">Nokia</td>
+</tr>
+<tr>
+<td class="white">Nokia6210/1.0 (03.01)</td>
+<td class="white">6210</td>
+<td class="white">&nbsp;</td>
+<td class="white">Nokia</td>
+</tr>
+<tr>
+<td class="white">Nokia6250/1.0</td>
+<td class="white">6250</td>
+<td class="white">&nbsp;</td>
+<td class="white">Nokia</td>
+</tr>
+<tr>
+<td class="white">Nokia6310/1.0 (03.03)</td>
+<td class="white">6310</td>
+<td class="white">&nbsp;</td>
+<td class="white">Nokia</td>
+</tr>
+<tr>
+<td class="white">Nokia6510/1.0 (02.40)</td>
+<td class="white">6510</td>
+<td class="white">&nbsp;</td>
+<td class="white">Nokia</td>
+</tr>
+<tr>
+<td class="white">Nokia7110/1.0</td>
+<td class="white">&nbsp;</td>
+<td class="white">Nokia WAP SDK</td>
+<td class="white">Nokia</td>
+</tr>
+<tr>
+<td class="white">Nokia7110/1.0 (04.77)</td>
+<td class="white">7110</td>
+<td class="white">&nbsp;</td>
+<td class="white">Nokia</td>
+</tr>
+<tr>
+<td class="white">Nokia7110 (DeckIt/1.2.3)</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">Nokia7160/1.1 (01.07)</td>
+<td class="white">7160</td>
+<td class="white">&nbsp;</td>
+<td class="white">Nokia</td>
+</tr>
+<tr>
+<td class="white">Nokia7210/1.0 (81.73)</td>
+<td class="white">7210</td>
+<td class="white">&nbsp;</td>
+<td class="white">Nokia</td>
+</tr>
+<tr>
+<td class="white">Nokia7650/1.0 Symbian-QP/6.1 Nokia/2.1</td>
+<td class="white">7650</td>
+<td class="white">&nbsp;</td>
+<td class="white">Nokia</td>
+</tr>
+<tr>
+<td class="white">Nokia8310/1.0 (04.04)</td>
+<td class="white">8310</td>
+<td class="white">&nbsp;</td>
+<td class="white">Nokia</td>
+</tr>
+<tr>
+<td class="white">Nokia9110/1.0</td>
+<td class="white">9110i</td>
+<td class="white">&nbsp;</td>
+<td class="white">Nokia</td>
+</tr>
+<tr>
+<td class="white">Nokia 9210/Symbian Crystal 6.0 (1.00)</td>
+<td class="white">9210</td>
+<td class="white">&nbsp;</td>
+<td class="white">Nokia</td>
+</tr>
+<tr>
+<td class="white">Nokia9210/1.0 Symbian-Crystal/6.0</td>
+<td class="white">9210</td>
+<td class="white">&nbsp;</td>
+<td class="white">Nokia</td>
+</tr>
+<tr>
+<td class="white">Nokia9210/2.0 Symbian-Crystal/6.1 Nokia/2.1</td>
+<td class="white">9210</td>
+<td class="white">&nbsp;</td>
+<td class="white">Nokia</td>
+</tr>
+<tr>
+<td class="white">OPWV1/4.0 UP/5.0.1.2 (GUI) UP.Browser/5.0.1.2 (GUI)-XXXX</td>
+<td class="white">&nbsp;</td>
+<td class="white">Openwave SDK WAP Edition 5.0</td>
+<td class="white">Openwave</td>
+</tr>
+<tr>
+<td class="white">Panasonic WAP</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Panasonic</td>
+</tr>
+<tr>
+<td class="white">Panasonic-GAD35/1.0 UP.Browser/4.1.22j</td>
+<td class="white">GD35</td>
+<td class="white">&nbsp;</td>
+<td class="white">Panasonic</td>
+</tr>
+<tr>
+<td class="white">Panasonic-GAD75</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Panasonic</td>
+</tr>
+<tr>
+<td class="white">Panasonic-GAD95</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Panasonic</td>
+</tr>
+<tr>
+<td class="white">PHILIPS-Az@lis288/2.1 UP/4.1.19m</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Philips</td>
+</tr>
+<tr>
+<td class="white">PHILIPS-Fisio311/2.1 UP/4.1.19m</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Philips</td>
+</tr>
+<tr>
+<td class="white">PHILIPS-Ozeo UP/4.1.16r</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Philips</td>
+</tr>
+<tr>
+<td class="white">PHILIPS-V21WAP UP/4.1.16r</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Philips</td>
+</tr>
+<tr>
+<td class="white">PHILIPS-VTHIN_WAP UP/4.1.16r</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Philips</td>
+</tr>
+<tr>
+<td class="white">PHILIPS-Xenium9@9 UP/4.1.16r</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Philips</td>
+</tr>
+<tr>
+<td class="white">PLM's WapBrowser</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">portalmmm/1.0 n21i-10(c10)</td>
+<td class="white">n21i</td>
+<td class="white">&nbsp;</td>
+<td class="white">NEC</td>
+</tr>
+<tr>
+<td class="white">QC-2255/1.0.08 UP.Browser/4.1.22b1</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">QC07 UP.Browser/4.1.22b</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">QC2135 UP.Browser/4.1.22b</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">QWAPPER/1.0</td>
+<td class="white">Compaq Aero</td>
+<td class="white">&nbsp;</td>
+<td class="white">Compaq</td>
+</tr>
+<tr>
+<td class="white">R380 2.0 WAP1.1</td>
+<td class="white">R380</td>
+<td class="white">&nbsp;</td>
+<td class="white">Ericsson</td>
+</tr>
+<tr>
+<td class="white">Rainbow/1.2</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">Rainbow/3.0</td>
+<td class="white">&nbsp;</td>
+<td class="white">Mobile Internet Toolkit (Mobile Browser Simulator)</td>
+<td class="white">Nokia</td>
+</tr>
+<tr>
+<td class="white">Rover 3.11 (RIM Handheld; Mobitex; OS v. 2.1)</td>
+<td class="white">Blackberry</td>
+<td class="white">Neomar Microbrowser</td>
+<td class="white">Neomar</td>
+</tr>
+<tr>
+<td class="white">SAGEM-3XXX/0.0 UP/4.1.19is</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">SAGEM</td>
+</tr>
+<tr>
+<td class="white">SAGEM-9XX/0.0 UP/4.1.16g</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">SAGEM</td>
+</tr>
+<tr>
+<td class="white">SAMSUNG-SGH-A110/1.0 UP/4.1.19k</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Samsung</td>
+</tr>
+<tr>
+<td class="white">SAMSUNG-SGH-A200/1.0 UP/4.1.19k</td>
+<td class="white">SGH-A200</td>
+<td class="white">&nbsp;</td>
+<td class="white">Samsung</td>
+</tr>
+<tr>
+<td class="white">SAMSUNG-SGH-A288/1.0 UP/4.1.19k</td>
+<td class="white">SGH-A288</td>
+<td class="white">&nbsp;</td>
+<td class="white">Samsung</td>
+</tr>
+<tr>
+<td class="white">SAMSUNG-SGH-A300/1.0 UP/4.1.19k</td>
+<td class="white">SGH-A300</td>
+<td class="white">&nbsp;</td>
+<td class="white">Samsung</td>
+</tr>
+<tr>
+<td class="white">SAMSUNG-SGH-N100/1.0 UP/4.1.19k</td>
+<td class="white">SGH-N100</td>
+<td class="white">&nbsp;</td>
+<td class="white">Samsung</td>
+</tr>
+<tr>
+<td class="white">SAMSUNG-SGH-N188/1.0 UP/4.1.19k</td>
+<td class="white">SGH-N188</td>
+<td class="white">&nbsp;</td>
+<td class="white">Samsung</td>
+</tr>
+<tr>
+<td class="white">SAMSUNG-SGH-N400 UP/4.1.19k</td>
+<td class="white">SGH-N400</td>
+<td class="white">&nbsp;</td>
+<td class="white">Samsung</td>
+</tr>
+<tr>
+<td class="white">SAMSUNG-SGH-Q100/1.0 UP/4.1.19k</td>
+<td class="white">SGH-Q100</td>
+<td class="white">&nbsp;</td>
+<td class="white">Samsung</td>
+</tr>
+<tr>
+<td class="white">SAMSUNG-SGH-R200/1.0 UP/4.1.19k</td>
+<td class="white">SGH-R200</td>
+<td class="white">&nbsp;</td>
+<td class="white">Samsung</td>
+</tr>
+<tr>
+<td class="white">SAMSUNG-SGH-R200S/1.0 UP/4.1.19k</td>
+<td class="white">SGH-R200S</td>
+<td class="white">&nbsp;</td>
+<td class="white">Samsung</td>
+</tr>
+<tr>
+<td class="white">SAMSUNG-SGH-R210S/1.0 UP/4.1.19k</td>
+<td class="white">SGH-R210S</td>
+<td class="white">&nbsp;</td>
+<td class="white">Samsung</td>
+</tr>
+<tr>
+<td class="white">SAMSUNG-SGH-R220/1.0 UP/4.1.19k</td>
+<td class="white">SGH-R220</td>
+<td class="white">&nbsp;</td>
+<td class="white">Samsung</td>
+</tr>
+<tr>
+<td class="white">Sanyo-C304SA/2.0 UP/4.1.20e</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Sanyo</td>
+</tr>
+<tr>
+<td class="white">Sanyo-SCP5000/1.1b UP.Browser/4.1.23a</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Sanyo</td>
+</tr>
+<tr>
+<td class="white">Scooter/WAP</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">SEC02 UP.Browser/4.1.22b</td>
+<td class="white">N200</td>
+<td class="white">&nbsp;</td>
+<td class="white">Samsung</td>
+</tr>
+<tr>
+<td class="white">SEC03 UP.Browser/4.1.22c1</td>
+<td class="white">SPH-i300</td>
+<td class="white">&nbsp;</td>
+<td class="white">Samsung</td>
+</tr>
+<tr>
+<td class="white">SEC07 UP.Browser/4.1.22b</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">SEC09 UP.Browser/4.1.22b</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">SHARP-TQ-GX12/1.0 Profile/MIDP-1.0 Configuration/CLDC-1.0 UP.Browser/6.1.0.5.119 (GUI) MMP/1.0</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Sharp</td>
+</tr>
+<tr>
+<td class="white">SIE-3618/01 UP.Browser/5.0.1.1.102 (GUI)</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Siemens</td>
+</tr>
+<tr>
+<td class="white">SIE-6618/01 UP.Browser/5.0.1.1.102 (GUI)</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Siemens</td>
+</tr>
+<tr>
+<td class="white">SIE-6688/3.1 UP/4.1.19i</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Siemens</td>
+</tr>
+<tr>
+<td class="white">SIE-C3I/1.0 UP/4.1.8b</td>
+<td class="white">C35, C35i</td>
+<td class="white">&nbsp;</td>
+<td class="white">Siemens</td>
+</tr>
+<tr>
+<td class="white">SIE-C45/06 UP.Browser/5.0.1.1.102 (GUI)</td>
+<td class="white">C45</td>
+<td class="white">&nbsp;</td>
+<td class="white">Siemens</td>
+</tr>
+<tr>
+<td class="white">SIE-IC35/1.0</td>
+<td class="white">IC35</td>
+<td class="white">&nbsp;</td>
+<td class="white">Siemens</td>
+</tr>
+<tr>
+<td class="white">SIE-ME45/06 UP.Browser/5.0.1.1.102 (GUI)</td>
+<td class="white">ME45</td>
+<td class="white">&nbsp;</td>
+<td class="white">Siemens</td>
+</tr>
+<tr>
+<td class="white">SIE-P35/1.0</td>
+<td class="white">P35</td>
+<td class="white">&nbsp;</td>
+<td class="white">Siemens</td>
+</tr>
+<tr>
+<td class="white">SIE-S35/1.0 UP/4.1.8</td>
+<td class="white">S35, S35i</td>
+<td class="white">&nbsp;</td>
+<td class="white">Siemens</td>
+</tr>
+<tr>
+<td class="white">SIE-S40/2.3 UP/4.1.16r</td>
+<td class="white">S40</td>
+<td class="white">&nbsp;</td>
+<td class="white">Siemens</td>
+</tr>
+<tr>
+<td class="white">SIE-S45/06 UP.Browser/5.0.1.1.102 (GUI)</td>
+<td class="white">S45</td>
+<td class="white">&nbsp;</td>
+<td class="white">Siemens</td>
+</tr>
+<tr>
+<td class="white">SIE-S55/05 UP.Browser/6.1.0.5.121 (GUI) MMP/1.0</td>
+<td class="white">S55</td>
+<td class="white">&nbsp;</td>
+<td class="white">Siemens</td>
+</tr>
+<tr>
+<td class="white">SIE-SL45/3.1 UP/4.1.19i</td>
+<td class="white">SL45</td>
+<td class="white">&nbsp;</td>
+<td class="white">Siemens</td>
+</tr>
+<tr>
+<td class="white">SIE-SLIK/3.1 UP/4.1.19i</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">Siemens</td>
+</tr>
+<tr>
+<td class="white">SKT42MT03002112812821090297722582;14;2;12;124</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">SonyEricssonP800/R101 Profile/MIDP-1.0 Configuration/CLDC-1.0</td>
+<td class="white">P800</td>
+<td class="white">&nbsp;</td>
+<td class="white">Sony Ericsson</td>
+</tr>
+<tr>
+<td class="white">SonyEricssonT200/R101</td>
+<td class="white">T200</td>
+<td class="white">&nbsp;</td>
+<td class="white">Sony Ericsson</td>
+</tr>
+<tr>
+<td class="white">SonyEricssonT300/R201</td>
+<td class="white">T300</td>
+<td class="white">&nbsp;</td>
+<td class="white">Sony Ericsson</td>
+</tr>
+<tr>
+<td class="white">SonyEricssonT68/R201A</td>
+<td class="white">T68</td>
+<td class="white">&nbsp;</td>
+<td class="white">Sony Ericsson</td>
+</tr>
+<tr>
+<td class="white">T-D1-MESSENGER500</td>
+<td class="white">T-D1-MESSENGER500</td>
+<td class="white">&nbsp;</td>
+<td class="white">T-Mobil</td>
+</tr>
+<tr>
+<td class="white">TF Search robot</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">UP.Browser</td>
+<td class="white">&nbsp;</td>
+<td class="white">phone.com UP.SDK</td>
+<td class="white">phone.com</td>
+</tr>
+<tr>
+<td class="white">UPG1 UP/4.0 (compatible; Blazer 1.0)</td>
+<td class="white">&nbsp;</td>
+<td class="white">Blazer</td>
+<td class="white">Handspring</td>
+</tr>
+<tr>
+<td class="white">UPG1 UP/4.0.7</td>
+<td class="white">&nbsp;</td>
+<td class="white">phone.com UP.Simulator</td>
+<td class="white">phone.com</td>
+</tr>
+<tr>
+<td class="white">Wapalizer/1.1</td>
+<td class="white">&nbsp;</td>
+<td class="white">Wapalizer</td>
+<td class="white">gelon.net</td>
+</tr>
+<tr>
+<td class="white">WapIDE-SDK/2.0</td>
+<td class="white">&nbsp;</td>
+<td class="white">WapIDE</td>
+<td class="white">Ericsson</td>
+</tr>
+<tr>
+<td class="white">WAPJAG Virtual WAP Device V1.12</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">WAPJAG.COM</td>
+</tr>
+<tr>
+<td class="white">WAPJAG Virtual WAP Robot V1.09</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">WAPJAG.COM</td>
+</tr>
+<tr>
+<td class="white">WAPman Version 1.6</td>
+<td class="white">&nbsp;</td>
+<td class="white">WAPman</td>
+<td class="white">virtuacom.com</td>
+</tr>
+<tr>
+<td class="white">WapOnWindows 1.0</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">WAPPER</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">Wapsilon - www.wapsilon.com - wappy.to - www.kronkel.com</td>
+<td class="white">&nbsp;</td>
+<td class="white">Wapsilon</td>
+<td class="white">Kronkel</td>
+</tr>
+<tr>
+<td class="white">Wapsilon/2.1 - &lt;b&gt;&lt;big&gt; W A P S I L O N &lt;/big&gt;&lt;/b&gt; v2.1 (www.wapsilon.com)</td>
+<td class="white">&nbsp;</td>
+<td class="white">Wapsilon</td>
+<td class="white">Kronkel</td>
+</tr>
+<tr>
+<td class="white">Waptor 1.0</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">WapView 1.02</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">wapworm/1.11 (wapworm@wapaw.com http://wapaw.com/)</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">WAPAW.COM</td>
+</tr>
+<tr>
+<td class="white">Webmonkey/0.2 NoComment</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">WinWAP 2.2 WML 1.1</td>
+<td class="white">&nbsp;</td>
+<td class="white">WinWAP</td>
+<td class="white">Slob-Trot Software Oy Ab</td>
+</tr>
+<tr>
+<td class="white">WinWAP 2.3 Light</td>
+<td class="white">&nbsp;</td>
+<td class="white">WinWAP</td>
+<td class="white">Slob-Trot Software Oy Ab</td>
+</tr>
+<tr>
+<td class="white">WinWAP 2.3 PRO</td>
+<td class="white">&nbsp;</td>
+<td class="white">WinWAP</td>
+<td class="white">Slob-Trot Software Oy Ab</td>
+</tr>
+<tr>
+<td class="white">WinWAP 3.0 PRO</td>
+<td class="white">&nbsp;</td>
+<td class="white">WinWAP</td>
+<td class="white">Slob-Trot Software Oy Ab</td>
+</tr>
+<tr>
+<td class="white">WinWAP for Pocket PC 1.1</td>
+<td class="white">&nbsp;</td>
+<td class="white">WinWAP</td>
+<td class="white">Slob-Trot Software Oy Ab</td>
+</tr>
+<tr>
+<td class="white">WML-Browser</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+<td class="white">&nbsp;</td>
+</tr>
+<tr>
+<td class="white">YourWap/1.16</td>
+<td class="white">&nbsp;</td>
+<td class="white">Wireless Companion</td>
+<td class="white">YOURWAP.com</td>
+</tr>
+<tr>
+<td class="white">YOURWAP.com Wireless Companion</td>
+<td class="white">&nbsp;</td>
+<td class="white">Wireless Companion</td>
+<td class="white">YOURWAP.com</td>
+</tr>
+</table>
+<div><p>The list above is only a subset of the more than 900 WAP browsers
+known by WebCab.de. WebCab.de <a href="http://webcab.de/wbhh.xhtml">commercially provides these data</a> including the
+whole HTTP header fields with monthly updates.</p>
+<p>An authentic dataset of an HTTP request may contain information like:</p>
+<p class="pre">accept: application/vnd.wap.wmlc, application/vnd.wap.wmlscriptc,
+image/vnd.wap.wbmp, application/vnd.wap.wtls-ca-certificate, image/gif,
+text/plain, text/x-vCard, text/x-vCalendar,
+application/x-NokiaGameData,text/vnd.wap.wml,text/vnd.wap.wmlscript<br />accept-charset:
+ISO-8859-1, UTF-8; Q=0.8, ISO-10646-UCS-2; Q=0.6<br />accept-language: en<br />connection:
+close<br />host: webcab.de<br />if-modified-since: Tue, 30 Apr 2002 15:21:55 GMT<br />user-agent:
+Nokia8310/1.0 (04.53)<br />via: WTP/1.1 iswg1ldv (Nokia Artuse WAP Gateway 3.0/ECD9/1.2.89)<br />x-network-info:
+GPRS,unsecured<br />x-nokia-bearer: GPRS<br />x-nokia-connection-mode:
+CMODE<br />x-wap-tod-coded: Thu, 01 Jan 1970 00:00:00 GMT</p></div>
+</div>
+<div class="navbar" title="Navigation bar"><a href=
+"http://webcab.de/">Home</a> | <a href=
+"http://webcab.de/s.htm">Services</a> | <a href=
+"http://webcab.de/links.htm">Links</a> | <a href=
+"http://webcab.de/about.htm">About</a> | <a href=
+"http://webcab.de/contact.htm">Contact</a> | <a href=
+"http://webcab.de/news.htm">News</a> | <a href=
+"http://webcab.de/search.htm">Search</a></div>
+<address>&copy; 1999-2004 <a href="http://webcab.de/">WebCab.de</a> <span
+class="sup"><a href="http://webcab.de/tm.htm"><abbr title="Trademark">TM</abbr></a></span>, <a href=
+"http://webcab.de/cgi-bin/wf.cgi/x-auto?s=WAPUA%3A">
+Contact</a></address>
+</body>
+</html>
