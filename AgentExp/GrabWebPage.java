@@ -419,7 +419,7 @@ class GrabUtility{
 				// meaning absolute url from root
 				// System.out.println("Absolute Link - "+getRootUrlString(fromHTMLPageUrl)+link);
 				filesToGrab.add(getRootUrlString(fromHTMLPageUrl)+link);
-			} else if(link.startsWith("htt") && !filesToGrab.contains(link)){
+			} else if(link.contains("://") && !filesToGrab.contains(link)){
 				// System.out.println("Full Doamin Link - "+link);
 				URL url;
 				try {
