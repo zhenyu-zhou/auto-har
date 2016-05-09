@@ -430,7 +430,7 @@ class GrabUtility{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			} else {
+			} else if(!filesToGrab.contains(link)){
 				// meaning relative url from current directory
 				// System.out.println("Relative Link - "+getCurrentFolder(fromHTMLPageUrl)+link);
 				filesToGrab.add(getCurrentFolder(fromHTMLPageUrl)+link);
