@@ -26,124 +26,159 @@ import org.jsoup.select.Elements;
 
 import util.AlexaSites;
 
-public class GrabWebPage {
+public class GrabWebPage
+{
 	/**
 	 * Default Constructor
 	 */
-	public GrabWebPage() {}
-	
-	public static ArrayList<String> contents = new ArrayList<String>(), 
+	public GrabWebPage()
+	{
+	}
+
+	public static ArrayList<String> contents = new ArrayList<String>(),
 			agents = new ArrayList<String>();
-	public static Hashtable<String, ArrayList<String>>
-			results = new Hashtable<String, ArrayList<String>>();
+	public static Hashtable<String, ArrayList<String>> results = new Hashtable<String, ArrayList<String>>();
 	public static final String OUT = "/Users/zzy/try/result_agent.txt";
-	
-	public static void main(String[] args) throws Exception {
+
+	public static void main(String[] args) throws Exception
+	{
 		File f = new File(OUT);
-		if(f.exists())
+		if (f.exists())
 			f.delete();
-		
-		BufferedReader reader = new BufferedReader(new FileReader(
-				new File(AgentParser.ROOT+AgentParser.OUT)));
+
+		BufferedReader reader = new BufferedReader(new FileReader(new File(
+				AgentParser.ROOT + AgentParser.OUT)));
 		String temp = null;
 		while ((temp = reader.readLine()) != null)
 		{
 			agents.add(temp);
 		}
 		reader.close();
-		
-		reader = new BufferedReader(new FileReader(
-				new File(ContentParser.ROOT+ContentParser.OUT)));
+
+		reader = new BufferedReader(new FileReader(new File(ContentParser.ROOT
+				+ ContentParser.OUT)));
 		temp = null;
 		while ((temp = reader.readLine()) != null)
 		{
 			contents.add(temp);
 		}
 		reader.close();
-		
-    	for(String s : AlexaSites.SITES)
-    	{
-    		for(String a : agents)
-    		{
-    			// System.out.println(main_zzy(s, "Java"));
-    			grab(s, a);
-    			break;
-    		}
-    		break;
-    	} 
-    	
-    	
-    	System.out.println("\n-------------RESULTS-------------\n");
-    	for(String key : results.keySet())
-    	{
-    		Util.writeFileAppend(OUT, "key: "+key+", size: "+results.get(key).size()+"\n");
-    		System.out.println("key: "+key+", size: "+results.get(key).size());
-    		for(String s : results.get(key))
-    		{
-    			Util.writeFileAppend(OUT, s+"\n");
-    			System.out.println(s);
-    		}
-    	}
+
+		for (String s : AlexaSites.SITES)
+		{
+			for (String a : agents)
+			{
+				// System.out.println(grab(s, "Java"));
+				try
+				{
+					grab(s, a);
+				} catch (Exception e)
+				{
+					e.printStackTrace();
+				}
+				for (String key : results.keySet())
+				{
+					Util.writeFileAppend(OUT, "key: " + key + ", size: "
+							+ results.get(key).size() + "\n");
+					for (String v : results.get(key))
+					{
+						Util.writeFileAppend(OUT, v + "\n");
+						System.out.println(v);
+					}
+				}
+				break;
+			}
+			break;
+		}
+
+		System.out.println("\n-------------RESULTS-------------\n");
+		for (String key : results.keySet())
+		{
+			Util.writeFileAppend(OUT,
+					"key: " + key + ", size: " + results.get(key).size() + "\n");
+			System.out.println("key: " + key + ", size: "
+					+ results.get(key).size());
+			for (String s : results.get(key))
+			{
+				Util.writeFileAppend(OUT, s + "\n");
+				System.out.println(s);
+			}
+		}
 	}
-	
+
 	/**
-	 * @param args - The inline Command parameters. 
-	 * accepts only 2 parameters, first is url and second is output directory location
-	 * @throws Exception 
-	 * @exception In case url is broken or invalid - program will throw an exception
-	 *            In case of user doesn't have proper privileges over output directory
-	 *            or directory already exists, or unable to access output directory
-	 *            location, etc - raises invalid output directory location
+	 * @param args
+	 *            - The inline Command parameters. accepts only 2 parameters,
+	 *            first is url and second is output directory location
+	 * @throws Exception
+	 * @exception In
+	 *                case url is broken or invalid - program will throw an
+	 *                exception In case of user doesn't have proper privileges
+	 *                over output directory or directory already exists, or
+	 *                unable to access output directory location, etc - raises
+	 *                invalid output directory location
 	 */
-	public static void grab(String url, String agent) throws Exception {
-		
+	public static void grab(String url, String agent) throws Exception
+	{
+
 		int i = 0;
 		// String url = "https://www.google.com/#q=minami+ke";
 		String outputDirPath = "/Users/zzy/try/tmp/";
-		
-        if(url == null || outputDirPath == null){
-        	System.out.println(GrabUtility.usageMessage);
-	        throw new Exception("Invalid input parameters");
-        }
-        
-		// in case no http protocol specified then add protocol part 
-		// to form proper url
-		if(!url.startsWith("http://") && !url.startsWith("https://")){
-			url = "http://"+url;
+
+		if (url == null || outputDirPath == null)
+		{
+			System.out.println(GrabUtility.usageMessage);
+			throw new Exception("Invalid input parameters");
 		}
-		
-		System.out.println("url: "+url);
-		System.out.println("agent: "+agent);
-		
+
+		// in case no http protocol specified then add protocol part
+		// to form proper url
+		if (!url.startsWith("http://") && !url.startsWith("https://"))
+		{
+			url = "http://" + url;
+		}
+
+		System.out.println("url: " + url);
+		System.out.println("agent: " + agent);
+
 		URL obj = new URL(url);
 		File outputDir = new File(outputDirPath);
-		if(outputDir.exists() && outputDir.isFile()){
-			System.out.println("output directory path is wrong, please provide some directory path");
+		if (outputDir.exists() && outputDir.isFile())
+		{
+			System.out
+					.println("output directory path is wrong, please provide some directory path");
 			return;
-		} else if (!outputDir.exists()){
+		}
+		else if (!outputDir.exists())
+		{
 			outputDir.mkdirs();
 			System.out.println("Directory created!!");
 		}
 		GrabWebPage.getWebPage(obj, outputDir, agent);
 		// System.out.println("First Page grabbed successfully!!");
-		
-		//Links to visit ->
+
+		// Links to visit ->
 		String tempEntry = null;
 		int linksToGrabSize;
-		synchronized (GrabUtility.filesToGrab) {
+		synchronized (GrabUtility.filesToGrab)
+		{
 			linksToGrabSize = GrabUtility.filesToGrab.size();
 			// System.out.println("Total filesToGrab - "+linksToGrabSize);
 		}
-		
-		for (i=0; i<linksToGrabSize; i++) {
+
+		for (i = 0; i < linksToGrabSize; i++)
+		{
 			// System.out.println("Value of i - "+i);
 			tempEntry = null;
-			
-			synchronized (GrabUtility.filesToGrab) {
-				if(GrabUtility.filesToGrab.size() > i){
+
+			synchronized (GrabUtility.filesToGrab)
+			{
+				if (GrabUtility.filesToGrab.size() > i)
+				{
 					tempEntry = GrabUtility.filesToGrab.get(i);
 					obj = new URL(tempEntry);
-					if(!GrabUtility.isURLAlreadyGrabbed(tempEntry)){
+					if (!GrabUtility.isURLAlreadyGrabbed(tempEntry))
+					{
 						GrabWebPage.getWebPage(obj, outputDir, agent);
 					}
 					// System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
@@ -152,316 +187,390 @@ public class GrabWebPage {
 			}
 			linksToGrabSize = GrabUtility.filesToGrab.size();
 		}
-		
+
 		// System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-		
+
 		Iterator<String> filesToGrab = GrabUtility.filesToGrab.iterator();
 		// System.out.println("URLs to Grab - ");
-		while (filesToGrab.hasNext()) {
+		while (filesToGrab.hasNext())
+		{
 			tempEntry = filesToGrab.next();
 			// System.out.println(tempEntry);
 		}
 		// System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-		
-		//Total Links Visited:-
+
+		// Total Links Visited:-
 		Iterator<String> grabbedFiles = GrabUtility.grabbedFiles.iterator();
 		// System.out.println("Grabbeded URLs - ");
-		while (grabbedFiles.hasNext()) {
+		while (grabbedFiles.hasNext())
+		{
 			tempEntry = grabbedFiles.next();
 			// System.out.println(tempEntry);
 		}
 		// System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 	}
-	
-	public static void getWebPage(URL obj, File outputDir, String agent) {
+
+	public static void getWebPage(URL obj, File outputDir, String agent)
+	{
 		FileOutputStream fop = null;
 		BufferedReader in = null;
 		HttpURLConnection conn = null;
 		File outputFile = null;
 		InputStream is = null;
-		try {
+		try
+		{
 			String path = obj.getPath();
-			String filename = path.substring(path.lastIndexOf('/')+1);
-			if(filename.equals("/") || filename.equals("")){
+			String filename = path.substring(path.lastIndexOf('/') + 1);
+			if (filename.equals("/") || filename.equals(""))
+			{
 				filename = "default.html";
 			}
 			// System.out.println(filename);
-			
-			//Output file name
+
+			// Output file name
 			outputFile = new File(outputDir, filename);
-			
+
 			conn = (HttpURLConnection) obj.openConnection();
 			conn.setReadTimeout(5000);
 			conn.addRequestProperty("Accept-Language", "en-US,en;q=0.8");
 			conn.addRequestProperty("User-Agent", agent);
 			// conn.addRequestProperty("Referer", "google.com");
-			
+
 			boolean redirect = false;
-			
+
 			// normally, 3xx is redirect
 			int status = conn.getResponseCode();
-			if (status != HttpURLConnection.HTTP_OK) {
+			if (status != HttpURLConnection.HTTP_OK)
+			{
 				if (status == HttpURLConnection.HTTP_MOVED_TEMP
 						|| status == HttpURLConnection.HTTP_MOVED_PERM
-						|| status == HttpURLConnection.HTTP_SEE_OTHER){
+						|| status == HttpURLConnection.HTTP_SEE_OTHER)
+				{
 					redirect = true;
-				}else{
+				}
+				else
+				{
 					// System.out.println("Unable to get resource mostly 404 "+status);
 					return;
 				}
 			}
-			
+
 			// System.out.println("Response Code ... " + status);
-			
-			if (redirect) {
+
+			if (redirect)
+			{
 				// get redirect url from "location" header field
 				String newUrl = conn.getHeaderField("Location");
-				
+
 				// get the cookie if need, for login
 				String cookies = conn.getHeaderField("Set-Cookie");
-				
+
 				// open the new connnection again
-				obj =  new URL(newUrl);
+				obj = new URL(newUrl);
 				conn = (HttpURLConnection) obj.openConnection();
 				conn.setRequestProperty("Cookie", cookies);
 				conn.addRequestProperty("Accept-Language", "en-US,en;q=0.8");
 				conn.addRequestProperty("User-Agent", agent);
 				conn.addRequestProperty("Referer", "google.com");
-				
+
 				// System.out.println("Redirect to URL : " + newUrl);
 			}
-			
+
 			// if file doesn't exists, then create it
-			if (!outputFile.exists()) {
+			if (!outputFile.exists())
+			{
 				outputFile.createNewFile();
 			}
 			// can we write this file
-			if(!outputFile.canWrite()){
-				System.out.println("Cannot write to file - "+outputFile.getAbsolutePath());
+			if (!outputFile.canWrite())
+			{
+				System.out.println("Cannot write to file - "
+						+ outputFile.getAbsolutePath());
 				return;
 			}
-			
-			
+
 			String content = conn.getHeaderField("Content-Type");
-	    	System.out.println("content: "+content);
-	    	String[] tokens = content.split(";");
-	    	boolean find = false;
-	    	for(String t : tokens)
-	    	{
-	    		if(contents.contains(t))
-	    		{
-	    			find = true;
-	    		}
-	    	}
-	    	if(!find)
-	    	{
-	    		String key = obj.toExternalForm()+"_with_agent_"+agent;
-	    		if(results.containsKey(key))
-	    		{
-	    			results.get(key).add(content);
-	    		}
-	    		else
-	    		{
-	    			ArrayList<String> temps = new ArrayList<String>();
-	    			temps.add(content);
-	    			results.put(key, temps);
-	    		}
-	    		System.err.println("find exception content: "+content);
-	    	}		
-			
-			//parse only HTML type page response, others just write them to their respective files
-			//in given output directory
-			if(filename.endsWith("html") || filename.endsWith("htm")
+			System.out.println("content: " + content);
+			String[] tokens = content.split(";");
+			boolean find = false;
+			for (String t : tokens)
+			{
+				if (contents.contains(t))
+				{
+					find = true;
+				}
+			}
+			if (!find)
+			{
+				String key = obj.toExternalForm() + "_with_agent_" + agent;
+				if (results.containsKey(key))
+				{
+					results.get(key).add(content);
+				}
+				else
+				{
+					ArrayList<String> temps = new ArrayList<String>();
+					temps.add(content);
+					results.put(key, temps);
+				}
+				System.err.println("find exception content: " + content);
+			}
+
+			// parse only HTML type page response, others just write them to
+			// their respective files
+			// in given output directory
+			if (filename.endsWith("html") || filename.endsWith("htm")
 					|| filename.endsWith("asp") || filename.endsWith("aspx")
 					|| filename.endsWith("php") || filename.endsWith("php")
-					|| filename.endsWith("net")){
-				in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-				//Convert parse only if its html, others leave it as is
+					|| filename.endsWith("net"))
+			{
+				in = new BufferedReader(new InputStreamReader(
+						conn.getInputStream()));
+				// Convert parse only if its html, others leave it as is
 				String inputLine;
 				StringBuffer strResponse = new StringBuffer();
-				// append whole response into single string, save it into a file on storage
-				// if its of type html then parse it and get all css and images and javascript files
+				// append whole response into single string, save it into a file
+				// on storage
+				// if its of type html then parse it and get all css and images
+				// and javascript files
 				// and add them to filesToGrab list
-				while ((inputLine = in.readLine()) != null) {
-					strResponse.append(inputLine+"\r\n");
+				while ((inputLine = in.readLine()) != null)
+				{
+					strResponse.append(inputLine + "\r\n");
 				}
 				String htmlContent = strResponse.toString();
-				htmlContent = GrabUtility.searchForNewFilesToGrab(htmlContent, obj);
-				
-				try {
+				htmlContent = GrabUtility.searchForNewFilesToGrab(htmlContent,
+						obj);
+
+				try
+				{
 					// clear previous files contents
 					fop = new FileOutputStream(outputFile);
 					fop.write(htmlContent.getBytes());
 					fop.flush();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			} else {
-				// In case if file is not HTML type then directly store it to 
-				// output directory
-				try {
-					fop = new FileOutputStream(outputFile);
-					is = conn.getInputStream();
-					// clear previous files contents
-					byte[] buffer = new byte[1024*16]; // read in batches of 16K
-		            int length;
-		            while ((length = is.read(buffer)) > 0) {
-		                fop.write(buffer, 0, length);
-		            }
-					fop.flush();					
-				} catch (IOException e) {
+				} catch (IOException e)
+				{
 					e.printStackTrace();
 				}
 			}
-		} catch (Exception e) {
-			System.out.println("Excpetion in getting webpage - "+obj);
+			else
+			{
+				// In case if file is not HTML type then directly store it to
+				// output directory
+				try
+				{
+					fop = new FileOutputStream(outputFile);
+					is = conn.getInputStream();
+					// clear previous files contents
+					byte[] buffer = new byte[1024 * 16]; // read in batches of
+															// 16K
+					int length;
+					while ((length = is.read(buffer)) > 0)
+					{
+						fop.write(buffer, 0, length);
+					}
+					fop.flush();
+				} catch (IOException e)
+				{
+					e.printStackTrace();
+				}
+			}
+		} catch (Exception e)
+		{
+			System.out.println("Excpetion in getting webpage - " + obj);
 			e.printStackTrace();
-		} finally {
-			try {
-				if(is != null){
+		} finally
+		{
+			try
+			{
+				if (is != null)
+				{
 					is.close();
 				}
-				if(in != null){
+				if (in != null)
+				{
 					in.close();
 				}
-				if (fop != null) {
+				if (fop != null)
+				{
 					fop.close();
 				}
-			} catch (IOException e) {
+			} catch (IOException e)
+			{
 				e.printStackTrace();
 			}
 		}
 	}
 }
 
-class GrabUtility{
-	// filesToGrab - maintains all the links to files which we are going to grab/download
+class GrabUtility
+{
+	// filesToGrab - maintains all the links to files which we are going to
+	// grab/download
 	public static List<String> filesToGrab = new ArrayList<String>();
 	// grabbedFiles - links/urls to files which we have already downloaded
 	public static HashSet<String> grabbedFiles = new HashSet<String>();
-	
-	public static final String usageMessage = 
-				"Usage: GrabWebPage [--url url-to-grab] [--out output-directory-full-path]"
-		    + 	"  		--url url-to-grab\turl of webpage to grab"
-		    + 	"  		--out output-directory-full-path where to store grabbed files"
-		    +  	"For example -->  " 
-		    +	" GrabWebPage --url \"http://www.google.com\" --out \"F:/New folder\"";
-	
-	public static void addLinkGrabbedFilesList(String url){
-		synchronized (grabbedFiles) {
+
+	public static final String usageMessage = "Usage: GrabWebPage [--url url-to-grab] [--out output-directory-full-path]"
+			+ "  		--url url-to-grab\turl of webpage to grab"
+			+ "  		--out output-directory-full-path where to store grabbed files"
+			+ "For example -->  "
+			+ " GrabWebPage --url \"http://www.google.com\" --out \"F:/New folder\"";
+
+	public static void addLinkGrabbedFilesList(String url)
+	{
+		synchronized (grabbedFiles)
+		{
 			grabbedFiles.add(url);
 		}
 	}
-	
-	public static String getMovedUrlLocation(String responseHeader){
-		//handle HTTP Response
-		StringTokenizer stk = new StringTokenizer(responseHeader.toString(), "\n", false);
-		//check the new URL from response's location field
+
+	public static String getMovedUrlLocation(String responseHeader)
+	{
+		// handle HTTP Response
+		StringTokenizer stk = new StringTokenizer(responseHeader.toString(),
+				"\n", false);
+		// check the new URL from response's location field
 		String newUrl = null;
-		while(stk.hasMoreTokens()){
+		while (stk.hasMoreTokens())
+		{
 			String tmp = stk.nextToken();
-			if(tmp.toLowerCase().startsWith("location:") && 
-					tmp.split(" ")[1] != null && !tmp.split(" ")[1].trim().equals("")){
+			if (tmp.toLowerCase().startsWith("location:")
+					&& tmp.split(" ")[1] != null
+					&& !tmp.split(" ")[1].trim().equals(""))
+			{
 				newUrl = tmp.split(" ")[1];
 				break;
 			}
 		}
 		return newUrl;
 	}
-	
-	public static String searchForNewFilesToGrab(String htmlContent, URL fromHTMLPageUrl){
-		//get all links from this webpage and add them to Frontier List i.e. LinksToVisit ArrayList
+
+	public static String searchForNewFilesToGrab(String htmlContent,
+			URL fromHTMLPageUrl)
+	{
+		// get all links from this webpage and add them to Frontier List i.e.
+		// LinksToVisit ArrayList
 		Document responseHTMLDoc = null;
 		String urlToGrab = null;
-		if(!htmlContent.trim().equals("")){
+		if (!htmlContent.trim().equals(""))
+		{
 			responseHTMLDoc = Jsoup.parse(htmlContent);
 			// GrabUtility.searchNewLinksForCrawling(responseHTMLDoc, url);
 			// Get all the links
 			// System.out.println("All Links - ");
 			Elements links = responseHTMLDoc.select("link[href]");
-			for(Element link: links){
+			for (Element link : links)
+			{
 				urlToGrab = link.attr("href");
 				addLinkToFrontier(urlToGrab, fromHTMLPageUrl);
 				// System.out.println("Actual URL - "+urlToGrab);
-				String replacedURL = urlToGrab.substring(urlToGrab.lastIndexOf("/")+1);
+				String replacedURL = urlToGrab.substring(urlToGrab
+						.lastIndexOf("/") + 1);
 				htmlContent = htmlContent.replaceAll(urlToGrab, replacedURL);
 				// System.out.println("Replaced URL - "+replacedURL);
 			}
-			
+
 			// System.out.println("All external scripts - ");
 			Elements links2 = responseHTMLDoc.select("script[src]");
-			for(Element link: links2){
+			for (Element link : links2)
+			{
 				urlToGrab = link.attr("src");
 				addLinkToFrontier(urlToGrab, fromHTMLPageUrl);
 				// System.out.println("Actual URL - "+urlToGrab);
-				String replacedURL = urlToGrab.substring(urlToGrab.lastIndexOf("/")+1);
+				String replacedURL = urlToGrab.substring(urlToGrab
+						.lastIndexOf("/") + 1);
 				htmlContent = htmlContent.replaceAll(urlToGrab, replacedURL);
 				// System.out.println("Replaced URL - "+replacedURL);
 			}
-			
+
 			// System.out.println("All images - ");
 			Elements links3 = responseHTMLDoc.select("img[src]");
-			for(Element link: links3){
+			for (Element link : links3)
+			{
 				urlToGrab = link.attr("src");
 				addLinkToFrontier(urlToGrab, fromHTMLPageUrl);
 				// System.out.println("Actual URL - "+urlToGrab);
-				String replacedURL = urlToGrab.substring(urlToGrab.lastIndexOf("/")+1);
+				String replacedURL = urlToGrab.substring(urlToGrab
+						.lastIndexOf("/") + 1);
 				htmlContent = htmlContent.replaceAll(urlToGrab, replacedURL);
 				// System.out.println("Replaced URL - "+replacedURL);
 			}
 		}
 		return htmlContent;
 	}
-	
-	public static void addLinkToFrontier(String link, URL fromHTMLPageUrl) {
-		synchronized (filesToGrab) {
-			if(link.startsWith("/")){
+
+	public static void addLinkToFrontier(String link, URL fromHTMLPageUrl)
+	{
+		synchronized (filesToGrab)
+		{
+			if (link.startsWith("/"))
+			{
 				// meaning absolute url from root
 				// System.out.println("Absolute Link - "+getRootUrlString(fromHTMLPageUrl)+link);
-				filesToGrab.add(getRootUrlString(fromHTMLPageUrl)+link);
-			} else if(link.contains("://") && !filesToGrab.contains(link)){
+				filesToGrab.add(getRootUrlString(fromHTMLPageUrl) + link);
+			}
+			else if ( (link.contains("://") || link.startsWith("data:")) && !filesToGrab.contains(link))
+			{
 				// System.out.println("Full Doamin Link - "+link);
 				URL url;
-				try {
+				try
+				{
 					url = new URL(link);
-					if(isValidlink(url, fromHTMLPageUrl))	//if link from different domain
+					if (isValidlink(url, fromHTMLPageUrl)) // if link from
+															// different domain
 						filesToGrab.add(link);
-				} catch (MalformedURLException e) {
+				} catch (MalformedURLException e)
+				{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			} else if(!filesToGrab.contains(link)){
+			}
+			else if (!filesToGrab.contains(link))
+			{
 				// meaning relative url from current directory
 				// System.out.println("Relative Link - "+getCurrentFolder(fromHTMLPageUrl)+link);
-				filesToGrab.add(getCurrentFolder(fromHTMLPageUrl)+link);
+				filesToGrab.add(getCurrentFolder(fromHTMLPageUrl) + link);
 			}
 		}
 	}
-	
-	public static String getCurrentFolder(URL url){
-		String port = (url.getPort() == -1)? "" :(":"+String.valueOf(url.getPort()));
+
+	public static String getCurrentFolder(URL url)
+	{
+		String port = (url.getPort() == -1) ? "" : (":" + String.valueOf(url
+				.getPort()));
 		String path = url.getPath();
 		String currentFolderPath = path.substring(0, path.lastIndexOf("/") + 1);
-		return url.getProtocol() +"://" + url.getHost()+ port + currentFolderPath;
+		return url.getProtocol() + "://" + url.getHost() + port
+				+ currentFolderPath;
 	}
-	
-	public static String getRootUrlString(URL url){
-		String port = (url.getPort() == -1)? "" :(":"+String.valueOf(url.getPort()));
-		return url.getProtocol() +"://" + url.getHost()+ port;
+
+	public static String getRootUrlString(URL url)
+	{
+		String port = (url.getPort() == -1) ? "" : (":" + String.valueOf(url
+				.getPort()));
+		return url.getProtocol() + "://" + url.getHost() + port;
 	}
-	
-	//links like mailto, .pdf, or any file downloads, are not to be crawled
-	public static boolean isValidlink(URL link, URL fromHTMLPageUrl) {
-		//if link is from same domain
-		if (getRootUrlString(link).equalsIgnoreCase(getRootUrlString(fromHTMLPageUrl))){
+
+	// links like mailto, .pdf, or any file downloads, are not to be crawled
+	public static boolean isValidlink(URL link, URL fromHTMLPageUrl)
+	{
+		// if link is from same domain
+		if (getRootUrlString(link).equalsIgnoreCase(
+				getRootUrlString(fromHTMLPageUrl)))
+		{
 			return true;
-		} else {
+		}
+		else
+		{
 			return false;
 		}
 	}
-	
-	public static boolean isURLAlreadyGrabbed(String url){
-		synchronized (grabbedFiles) {
+
+	public static boolean isURLAlreadyGrabbed(String url)
+	{
+		synchronized (grabbedFiles)
+		{
 			return grabbedFiles.contains(url);
 		}
 	}
