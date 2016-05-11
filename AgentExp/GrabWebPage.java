@@ -86,12 +86,13 @@ public class GrabWebPage
 						System.out.println(v);
 					}
 				}
+				results = new Hashtable<String, ArrayList<String>>();
 				break;
 			}
 			break;
 		}
 
-		System.out.println("\n-------------RESULTS-------------\n");
+		/*System.out.println("\n-------------RESULTS-------------\n");
 		for (String key : results.keySet())
 		{
 			Util.writeFileAppend(OUT,
@@ -103,7 +104,7 @@ public class GrabWebPage
 				Util.writeFileAppend(OUT, s + "\n");
 				System.out.println(s);
 			}
-		}
+		}*/
 	}
 
 	/**
