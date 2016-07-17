@@ -3,6 +3,7 @@ package util;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -31,6 +32,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import sun.misc.SharedSecrets;
 import difflib.*;
 
 /**
@@ -397,7 +399,7 @@ public class Util
 	 * @author zzy
 	 * @return The average in double format
 	 */
-	private static double weight_avg(ArrayList<Double> arr,
+	public static double weight_avg(ArrayList<Double> arr,
 			boolean is_nature_order)
 	{
 		Collections.sort(arr);
@@ -557,7 +559,7 @@ public class Util
 	{
 		ArrayList<String> ret = new ArrayList<String>();
 
-		Pattern p = Pattern.compile(url_regex);
+		// Pattern p = Pattern.compile(url_regex);
 		Matcher matcher = URL.matcher(s);
 		while (matcher.find())
 		{
@@ -679,5 +681,44 @@ public class Util
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * Get the file descriptor as an integer from a given FileDescriptor
+	 * @author zzy
+	 * @param fd
+	 * 		The given FileDescriptor instance
+	 * @return The integer value
+	 */
+	@SuppressWarnings("restriction")
+	public static int getFD(FileDescriptor fd)
+	{
+		return SharedSecrets.getJavaIOFileDescriptorAccess().get(fd);
+	}
+
+	/**
+	 * Get the file descriptor as an integer from an input stream
+	 * @author zzy
+	 * @param is
+	 * 		The given InputStream instance
+	 * @return The integer value
+	 * @throws IOException
+	 */
+	public static int getFD(InputStream is) throws IOException
+	{
+		return getFD(((FileInputStream)is).getFD());
+	}
+
+	/**
+	 * Get the file descriptor as an integer from an output stream
+	 * @author zzy
+	 * @param os
+	 * 		The given OutputStream instance
+	 * @return The integer value
+	 * @throws IOException
+	 */
+	public static int getFD(OutputStream os) throws IOException
+	{
+		return getFD(((FileOutputStream)os).getFD());
 	}
 }
