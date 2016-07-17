@@ -16,7 +16,7 @@ public class QoSCmp
 	static int st_mon = -1, st_day = -1;//, month = -1, day = -1;
 	static LocalDate now = null;
 
-	static boolean cmp(File dir, ArrayList<Integer> change_period, ArrayList<Double> change_percentage)
+	static boolean cmp(File dir, ArrayList<Integer> change_period, ArrayList<Double> change_percentage) throws IOException
 	{
 		// System.out.println("In folder: " + dir.getAbsolutePath());
 		String preffix = null, ext = null;
@@ -109,7 +109,7 @@ public class QoSCmp
 		return false;
 	}
 
-	static int analysis(File dir)
+	static int analysis(File dir) throws IOException
 	{
 		System.out.println("In folder: " + dir.getName());
 		if(dir.getName().equals("js"))
@@ -143,6 +143,7 @@ public class QoSCmp
 
 	public static void main(String args[]) throws IOException
 	{
+		// FIXME
 		System.err.println("FIXME: add year 2016!!");
 		
 		/* now = LocalDate.now();

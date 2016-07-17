@@ -5,7 +5,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -41,6 +40,7 @@ import difflib.*;
  * @author zzy
  * 
  */
+@SuppressWarnings("restriction")
 public class Util
 {
 	private static final String[] STOP = { "the", "a", "and", "to" };
@@ -48,6 +48,7 @@ public class Util
 	/**
 	 * The path of model, which contains the word vectors
 	 */
+	@SuppressWarnings("unused")
 	private static final String MODEL_PATH = "I:/featureVector.txt";
 	public static Hashtable<String, ArrayList<Double>> word_vec = null;
 
@@ -619,10 +620,9 @@ public class Util
 	 * @param filename
 	 *            Path to the file
 	 * @return The List of all lines
-	 * @throws FileNotFoundException
+	 * @throws IOException
 	 */
-	private static List<String> fileToLines(String filename)
-			throws FileNotFoundException
+	private static List<String> fileToLines(String filename) throws IOException
 	{
 		List<String> lines = new LinkedList<String>();
 		String line = "";
@@ -636,6 +636,9 @@ public class Util
 		} catch (IOException e)
 		{
 			e.printStackTrace();
+		} finally
+		{
+			in.close();
 		}
 		return lines;
 	}
@@ -648,10 +651,10 @@ public class Util
 	 * @param path2
 	 *            Path to the files
 	 * @return True if the files are the same
-	 * @throws FileNotFoundException
+	 * @throws IOException
 	 */
 	public static boolean isFileSame(String path1, String path2)
-			throws FileNotFoundException
+			throws IOException
 	{
 		return isFileSameWithThre(path1, path2, 0);
 	}
@@ -659,17 +662,18 @@ public class Util
 	/**
 	 * Determine whether the two files are the same with a threshold, which
 	 * stands for the max lines can be different
+	 * 
 	 * @author zzy
 	 * @param path1
 	 * @param path2
 	 *            Path to the files
 	 * @param thre
-	 * 		The max number of lines can be different
+	 *            The max number of lines can be different
 	 * @return True if the files have no more than thre lines of difference
-	 * @throws FileNotFoundException
+	 * @throws IOException
 	 */
 	public static boolean isFileSameWithThre(String path1, String path2,
-			int thre) throws FileNotFoundException
+			int thre) throws IOException
 	{
 		List<String> original = fileToLines(path1);
 		List<String> revised = fileToLines(path2);
@@ -682,15 +686,15 @@ public class Util
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Get the file descriptor as an integer from a given FileDescriptor
+	 * 
 	 * @author zzy
 	 * @param fd
-	 * 		The given FileDescriptor instance
+	 *            The given FileDescriptor instance
 	 * @return The integer value
 	 */
-	@SuppressWarnings("restriction")
 	public static int getFD(FileDescriptor fd)
 	{
 		return SharedSecrets.getJavaIOFileDescriptorAccess().get(fd);
@@ -698,27 +702,29 @@ public class Util
 
 	/**
 	 * Get the file descriptor as an integer from an input stream
+	 * 
 	 * @author zzy
 	 * @param is
-	 * 		The given InputStream instance
+	 *            The given InputStream instance
 	 * @return The integer value
 	 * @throws IOException
 	 */
 	public static int getFD(InputStream is) throws IOException
 	{
-		return getFD(((FileInputStream)is).getFD());
+		return getFD(((FileInputStream) is).getFD());
 	}
 
 	/**
 	 * Get the file descriptor as an integer from an output stream
+	 * 
 	 * @author zzy
 	 * @param os
-	 * 		The given OutputStream instance
+	 *            The given OutputStream instance
 	 * @return The integer value
 	 * @throws IOException
 	 */
 	public static int getFD(OutputStream os) throws IOException
 	{
-		return getFD(((FileOutputStream)os).getFD());
+		return getFD(((FileOutputStream) os).getFD());
 	}
 }
