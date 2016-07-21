@@ -12,7 +12,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.lang.reflect.Field;
 import java.net.HttpURLConnection;
+import java.net.Socket;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -26,6 +28,8 @@ import java.util.Random;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.net.ssl.SSLSocket;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -695,6 +699,7 @@ public class Util
 	 *            The given FileDescriptor instance
 	 * @return The integer value
 	 */
+	@Deprecated
 	public static int getFD(FileDescriptor fd)
 	{
 		return SharedSecrets.getJavaIOFileDescriptorAccess().get(fd);
@@ -709,6 +714,7 @@ public class Util
 	 * @return The integer value
 	 * @throws IOException
 	 */
+	@Deprecated
 	public static int getFD(InputStream is) throws IOException
 	{
 		return getFD(((FileInputStream) is).getFD());
@@ -723,8 +729,72 @@ public class Util
 	 * @return The integer value
 	 * @throws IOException
 	 */
+	@Deprecated
 	public static int getFD(OutputStream os) throws IOException
 	{
 		return getFD(((FileOutputStream) os).getFD());
+	}
+	
+	// http://www.programcreek.com/java-api-examples/index.php?source_dir=android-ssl-master/mitm/src/main/java/uk/ac/cam/gpe21/droidssl/mitm/socket/SocketUtils.java
+	private static final Class<?> SSL_SOCKET_IMPL;
+	private static final Field SSL_SOCKET_INPUT;
+	private static final Field FD;
+	static
+	{
+		try
+		{
+			SSL_SOCKET_IMPL = Class.forName("sun.security.ssl.SSLSocketImpl");
+
+			SSL_SOCKET_INPUT = SSL_SOCKET_IMPL.getDeclaredField("sockInput");
+			SSL_SOCKET_INPUT.setAccessible(true);
+
+			FD = FileDescriptor.class.getDeclaredField("fd");
+			FD.setAccessible(true);
+		} catch (NoSuchFieldException | ClassNotFoundException ex)
+		{
+			throw new ExceptionInInitializerError(ex);
+		}
+	}
+	
+	/**
+	 * Get socket file descriptor for any types of socket, including SSL ones
+	 * @param socket
+	 * 		The given socket
+	 * @return The file descriptor of the given socket
+	 * @throws IOException
+	 */
+	public static int getFileDescriptor(Socket socket) throws IOException
+	{
+		try
+		{
+			Object in;
+			if (socket instanceof SSLSocket)
+			{
+				/*
+				 * Socket.getInputStream() on an SSLSocket returns the 
+				 * InputStream which reads the decrypted data from a buffer in 
+				 * memory - in this case, we read the private 
+				 * SSLSocketImpl.sockInput field with reflection to get at the 
+				 * InputStream which is backed by a file descriptor. 
+				 */
+				in = SSL_SOCKET_INPUT.get(socket);
+			}
+			else
+			{
+				in = socket.getInputStream();
+			}
+
+			if (!(in instanceof FileInputStream))
+				throw new IOException(
+						"sockInput is not an instance of FileInputStream");
+
+			FileInputStream fin = (FileInputStream) in;
+			FileDescriptor fd = fin.getFD();
+
+			return FD.getInt(fd);
+		} catch (IllegalAccessException ex)
+		{
+			throw new IOException(ex);
+		}
 	}
 }
