@@ -281,6 +281,22 @@ public class Util
 			throws IOException
 	{
 		File outFile = new File(path);
+		writeFile(outFile, content);
+	}
+	
+	/**
+	 * Write the content to a certain file.
+	 * 
+	 * @param outFile
+	 *            The output file
+	 * @param content
+	 *            The content needed to written
+	 * @author zzy
+	 * @throws IOException
+	 */
+	public static void writeFile(File outFile, String content)
+			throws IOException
+	{
 		if (!outFile.getParentFile().exists())
 			outFile.getParentFile().mkdirs();
 		if (outFile.exists())
@@ -305,6 +321,22 @@ public class Util
 			throws IOException
 	{
 		File outFile = new File(path);
+		writeFileAppend(outFile, content);
+	}
+	
+	/**
+	 * Append the content to a certain file
+	 * 
+	 * @param outFile
+	 *            The output file
+	 * @param content
+	 *            The content needed to written
+	 * @author zzy
+	 * @throws IOException
+	 */
+	public static void writeFileAppend(File outFile, String content)
+			throws IOException
+	{
 		if (!outFile.getParentFile().exists())
 			outFile.getParentFile().mkdirs();
 		if (!outFile.exists())
@@ -327,8 +359,21 @@ public class Util
 	 */
 	public static String readFile(String path) throws IOException
 	{
-		BufferedReader reader = new BufferedReader(new FileReader(
-				new File(path)));
+		return readFile(new File(path));
+	}
+	
+	/**
+	 * Read the content of a certain file
+	 * 
+	 * @param f
+	 *            The input file
+	 * @author zzy
+	 * @return The content of the file
+	 * @throws IOException
+	 */
+	public static String readFile(File f) throws IOException
+	{
+		BufferedReader reader = new BufferedReader(new FileReader(f));
 		String temp = null, content = "";
 		while ((temp = reader.readLine()) != null)
 		{
@@ -354,6 +399,24 @@ public class Util
 			throws IOException
 	{
 		File f = new File(path);
+		return readFile(new File(path));
+	}
+	
+	/**
+	 * Read the content of a certain file with certain character set
+	 * 
+	 * @param f
+	 *            The input file
+	 * @param charset
+	 *            The given character set
+	 * @author zzy
+	 * @see #readFile(String, String)
+	 * @return The content of the file
+	 * @throws IOException
+	 */
+	public static String readFile(File f, String charset)
+			throws IOException
+	{
 		FileInputStream in = new FileInputStream(f);
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in,
 				charset));
@@ -758,6 +821,7 @@ public class Util
 	
 	/**
 	 * Get socket file descriptor for any types of socket, including SSL ones
+	 * 
 	 * @param socket
 	 * 		The given socket
 	 * @return The file descriptor of the given socket
@@ -801,6 +865,8 @@ public class Util
 	/**
 	 * Generate the string for echo command to print
 	 * Example: echo he says: "hello" -> echo "he says: \"hello\""
+	 * 
+	 * @author zzy
 	 * @param s
 	 * 		The original string, not including echo.
 	 * 		Example: he says: "hello"
