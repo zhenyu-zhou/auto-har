@@ -797,4 +797,20 @@ public class Util
 			throw new IOException(ex);
 		}
 	}
+	
+	/**
+	 * Generate the string for echo command to print
+	 * Example: echo he says: "hello" -> echo "he says: \"hello\""
+	 * @param s
+	 * 		The original string, not including echo.
+	 * 		Example: he says: "hello"
+	 * @return
+	 * 		The string after escaping
+	 */
+	public static String echoCMD(String s)
+	{
+		s = s.replaceAll("!", "\"'!'\"");
+		s = "\"" + s + "\"";
+		return s;
+	}
 }
