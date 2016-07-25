@@ -280,8 +280,7 @@ public class Util
 	public static void writeFile(String path, String content)
 			throws IOException
 	{
-		File outFile = new File(path);
-		writeFile(outFile, content);
+		writeFile(new File(path), content);
 	}
 	
 	/**
@@ -297,7 +296,7 @@ public class Util
 	public static void writeFile(File outFile, String content)
 			throws IOException
 	{
-		if (!outFile.getParentFile().exists())
+		if (outFile.getParentFile() != null && !outFile.getParentFile().exists())
 			outFile.getParentFile().mkdirs();
 		if (outFile.exists())
 			outFile.delete();
@@ -320,8 +319,7 @@ public class Util
 	public static void writeFileAppend(String path, String content)
 			throws IOException
 	{
-		File outFile = new File(path);
-		writeFileAppend(outFile, content);
+		writeFileAppend(new File(path), content);
 	}
 	
 	/**
@@ -337,7 +335,7 @@ public class Util
 	public static void writeFileAppend(File outFile, String content)
 			throws IOException
 	{
-		if (!outFile.getParentFile().exists())
+		if (outFile.getParentFile() != null && !outFile.getParentFile().exists())
 			outFile.getParentFile().mkdirs();
 		if (!outFile.exists())
 			outFile.createNewFile();
@@ -398,7 +396,6 @@ public class Util
 	public static String readFile(String path, String charset)
 			throws IOException
 	{
-		File f = new File(path);
 		return readFile(new File(path));
 	}
 	
