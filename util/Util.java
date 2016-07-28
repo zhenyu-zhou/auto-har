@@ -991,5 +991,24 @@ public class Util
 
 		return null;
 	}
+	
+	/**
+	 * Print debug information
+	 * 
+	 * @author zzy
+	 * @param s
+	 * 		Content to print
+	 * @param logger
+	 * 		Logger for the class
+	 * @param debug
+	 * 		Whether to input
+	 */
+	public static void debugPrint(String s, boolean debug)
+	{
+		if (debug)
+		{
+			System.err.println(s);
+		}
+	}
 
 }
