@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
@@ -897,8 +898,8 @@ public class Util
 		try
 		{
 			Class c = Class.forName(caller.getClass().getName());
-			
-			if(para == null)
+
+			if (para == null)
 			{
 				Method method = c.getMethod(m);
 				return method.invoke(caller);
@@ -906,23 +907,82 @@ public class Util
 			else
 			{
 				Class[] para_type = new Class[para.length];
-				for(int i = 0; i < para.length; i++)
+				for (int i = 0; i < para.length; i++)
 				{
-					para_type[i] = para[i].getClass();
-					
-					// Take care of the primitive types: TYPE field in the wrapper class
-					Field[] fields = para_type[i].getDeclaredFields();
-					for(Field f : fields)
-					{
-						if(f.getName().equals("TYPE"))
-						{
-							para_type[i] = (Class) f.get(para[i]);
-							break;
-						}
-					}
+					para_type[i] = getClass(para[i]);
 				}
 				Method method = c.getMethod(m, para_type);
 				return method.invoke(caller, para);
+			}
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	/**
+	 * Get the class of the given object
+	 * 
+	 * @author zzy
+	 * @param o
+	 * 		The given object
+	 * @return
+	 * 		The class of given object, including primitive types
+	 * @throws IllegalArgumentException
+	 * @throws IllegalAccessException
+	 */
+	@SuppressWarnings("rawtypes")
+	private static Class getClass(Object o) throws IllegalArgumentException,
+			IllegalAccessException
+	{
+		Class c = o.getClass();
+
+		// Take care of the primitive types: TYPE field in the wrapper class
+		Field[] fields = c.getDeclaredFields();
+		for (Field f : fields)
+		{
+			if (f.getName().equals("TYPE"))
+			{
+				c = (Class) f.get(o);
+				break;
+			}
+		}
+
+		return c;
+	}
+
+	/**
+	 * Get an instance from the given class by name
+	 * 
+	 * @author zzy
+	 * @param name
+	 * 		The class name
+	 * @param para
+	 * 		The parameter for constructor. Could be null if no parameters.
+	 * @return
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static Object getObject(String name, Object[] para)
+	{
+		try
+		{
+			Class c = Class.forName(name);
+			if (para == null)
+			{
+				Constructor con = c.getConstructor();
+				return con.newInstance();
+			}
+			else
+			{
+				Class[] para_type = new Class[para.length];
+				for (int i = 0; i < para.length; i++)
+				{
+					para_type[i] = getClass(para[i]);
+				}
+				Constructor con = c.getConstructor(para_type);
+				return con.newInstance(para);
 			}
 		} catch (Exception e)
 		{
