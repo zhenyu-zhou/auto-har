@@ -13,6 +13,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.Socket;
 import java.net.URL;
@@ -282,7 +283,7 @@ public class Util
 	{
 		writeFile(new File(path), content);
 	}
-	
+
 	/**
 	 * Write the content to a certain file.
 	 * 
@@ -296,7 +297,8 @@ public class Util
 	public static void writeFile(File outFile, String content)
 			throws IOException
 	{
-		if (outFile.getParentFile() != null && !outFile.getParentFile().exists())
+		if (outFile.getParentFile() != null
+				&& !outFile.getParentFile().exists())
 			outFile.getParentFile().mkdirs();
 		if (outFile.exists())
 			outFile.delete();
@@ -321,7 +323,7 @@ public class Util
 	{
 		writeFileAppend(new File(path), content);
 	}
-	
+
 	/**
 	 * Append the content to a certain file
 	 * 
@@ -335,7 +337,8 @@ public class Util
 	public static void writeFileAppend(File outFile, String content)
 			throws IOException
 	{
-		if (outFile.getParentFile() != null && !outFile.getParentFile().exists())
+		if (outFile.getParentFile() != null
+				&& !outFile.getParentFile().exists())
 			outFile.getParentFile().mkdirs();
 		if (!outFile.exists())
 			outFile.createNewFile();
@@ -359,7 +362,7 @@ public class Util
 	{
 		return readFile(new File(path));
 	}
-	
+
 	/**
 	 * Read the content of a certain file
 	 * 
@@ -398,7 +401,7 @@ public class Util
 	{
 		return readFile(new File(path));
 	}
-	
+
 	/**
 	 * Read the content of a certain file with certain character set
 	 * 
@@ -411,8 +414,7 @@ public class Util
 	 * @return The content of the file
 	 * @throws IOException
 	 */
-	public static String readFile(File f, String charset)
-			throws IOException
+	public static String readFile(File f, String charset) throws IOException
 	{
 		FileInputStream in = new FileInputStream(f);
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in,
@@ -794,7 +796,7 @@ public class Util
 	{
 		return getFD(((FileOutputStream) os).getFD());
 	}
-	
+
 	// http://www.programcreek.com/java-api-examples/index.php?source_dir=android-ssl-master/mitm/src/main/java/uk/ac/cam/gpe21/droidssl/mitm/socket/SocketUtils.java
 	private static final Class<?> SSL_SOCKET_IMPL;
 	private static final Field SSL_SOCKET_INPUT;
@@ -815,12 +817,12 @@ public class Util
 			throw new ExceptionInInitializerError(ex);
 		}
 	}
-	
+
 	/**
 	 * Get socket file descriptor for any types of socket, including SSL ones
 	 * 
 	 * @param socket
-	 * 		The given socket
+	 *            The given socket
 	 * @return The file descriptor of the given socket
 	 * @throws IOException
 	 */
@@ -858,17 +860,16 @@ public class Util
 			throw new IOException(ex);
 		}
 	}
-	
+
 	/**
-	 * Generate the string for echo command to print
-	 * Example: echo he says: "hello" -> echo "he says: \"hello\""
+	 * Generate the string for echo command to print Example: echo he says:
+	 * "hello" -> echo "he says: \"hello\""
 	 * 
 	 * @author zzy
 	 * @param s
-	 * 		The original string, not including echo.
-	 * 		Example: he says: "hello"
-	 * @return
-	 * 		The string after escaping
+	 *            The original string, not including echo. Example: he says:
+	 *            "hello"
+	 * @return The string after escaping
 	 */
 	public static String echoCMD(String s)
 	{
@@ -876,4 +877,59 @@ public class Util
 		s = "\"" + s + "\"";
 		return s;
 	}
+	
+	/**
+	 * Call a method with its name using reflection
+	 * 
+	 * @author zzy
+	 * @param caller
+	 * 		The caller instance
+	 * @param m
+	 * 		The name of the method
+	 * @param para
+	 * 		The parameter list. Could be set to null if there are no parameters.
+	 * @return
+	 * 		The return value of the method, if any
+	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public static Object runMethod(Object caller, String m, Object[] para)
+	{
+		try
+		{
+			Class c = Class.forName(caller.getClass().getName());
+			
+			if(para == null)
+			{
+				Method method = c.getMethod(m);
+				return method.invoke(caller);
+			}
+			else
+			{
+				Class[] para_type = new Class[para.length];
+				for(int i = 0; i < para.length; i++)
+				{
+					para_type[i] = para[i].getClass();
+					
+					// Take care of the primitive types: TYPE field in the wrapper class
+					Field[] fields = para_type[i].getDeclaredFields();
+					for(Field f : fields)
+					{
+						if(f.getName().equals("TYPE"))
+						{
+							para_type[i] = (Class) f.get(para[i]);
+							break;
+						}
+					}
+				}
+				Method method = c.getMethod(m, para_type);
+				return method.invoke(caller, para);
+			}
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
 }
