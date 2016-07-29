@@ -899,7 +899,7 @@ public class Util
 		{
 			Class c = Class.forName(caller.getClass().getName());
 
-			if (para == null)
+			if (para == null || para.length == 0)
 			{
 				Method method = c.getMethod(m);
 				return method.invoke(caller);
@@ -969,7 +969,7 @@ public class Util
 		try
 		{
 			Class c = Class.forName(name);
-			if (para == null)
+			if (para == null || para.length == 0)
 			{
 				Constructor con = c.getConstructor();
 				return con.newInstance();
