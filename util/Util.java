@@ -994,13 +994,12 @@ public class Util
 	}
 	
 	/**
-	 * Print debug information
+	 * Print debug information WITHOUT new line
 	 * 
 	 * @author zzy
+	 * @see #debugPrintln(String, boolean)
 	 * @param s
 	 * 		Content to print
-	 * @param logger
-	 * 		Logger for the class
 	 * @param debug
 	 * 		Whether to input
 	 */
@@ -1008,8 +1007,23 @@ public class Util
 	{
 		if (debug)
 		{
-			System.err.println(s);
+			System.err.print(s);
 		}
+	}
+	
+	/**
+	 * Print debug information with new line
+	 * 
+	 * @author zzy
+	 * @see #debugPrint(String, boolean)
+	 * @param s
+	 * 		Content to print
+	 * @param debug
+	 * 		Whether to input
+	 */
+	public static void debugPrintln(String s, boolean debug)
+	{
+		debugPrint(s+"\n", debug);
 	}
 	
 	/**
