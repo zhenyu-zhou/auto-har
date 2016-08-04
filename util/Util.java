@@ -48,7 +48,7 @@ import difflib.*;
  * 
  */
 @SuppressWarnings("restriction")
-public class Util
+public abstract class Util
 {
 	private static final String[] STOP = { "the", "a", "and", "to" };
 	private static final String[] STOP_CH = { "张三", "李四" };
