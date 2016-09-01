@@ -1075,6 +1075,11 @@ public abstract class Util
 			return;
 		}
 
+		if(preffix == null)
+			preffix = "";
+		if(suffix == null)
+			suffix = "";
+		
 		st -= (preffix.length() + suffix.length());
 		if (st < 0)
 		{
