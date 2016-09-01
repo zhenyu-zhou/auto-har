@@ -34,6 +34,7 @@ import java.util.regex.Pattern;
 
 import javax.net.ssl.SSLSocket;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -299,6 +300,11 @@ public abstract class Util
 	public static void writeFile(File outFile, String content)
 			throws IOException
 	{
+		if(content == null || content.length() == 0)
+		{
+			System.err.println("Nothing to write");
+			return ;
+		}
 		if (outFile.getParentFile() != null
 				&& !outFile.getParentFile().exists())
 			outFile.getParentFile().mkdirs();
@@ -879,19 +885,19 @@ public abstract class Util
 		s = "\"" + s + "\"";
 		return s;
 	}
-	
+
 	/**
 	 * Call a method with its name using reflection
 	 * 
 	 * @author zzy
 	 * @param caller
-	 * 		The caller instance
+	 *            The caller instance
 	 * @param m
-	 * 		The name of the method
+	 *            The name of the method
 	 * @param para
-	 * 		The parameter list. Could be set to null if there are no parameters.
-	 * @return
-	 * 		The return value of the method, if any
+	 *            The parameter list. Could be set to null if there are no
+	 *            parameters.
+	 * @return The return value of the method, if any
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static Object runMethod(Object caller, String m, Object[] para)
@@ -928,9 +934,8 @@ public abstract class Util
 	 * 
 	 * @author zzy
 	 * @param o
-	 * 		The given object
-	 * @return
-	 * 		The class of given object, including primitive types
+	 *            The given object
+	 * @return The class of given object, including primitive types
 	 * @throws IllegalArgumentException
 	 * @throws IllegalAccessException
 	 */
@@ -959,9 +964,9 @@ public abstract class Util
 	 * 
 	 * @author zzy
 	 * @param name
-	 * 		The class name
+	 *            The class name
 	 * @param para
-	 * 		The parameter for constructor. Could be null if no parameters.
+	 *            The parameter for constructor. Could be null if no parameters.
 	 * @return
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -992,16 +997,16 @@ public abstract class Util
 
 		return null;
 	}
-	
+
 	/**
 	 * Print debug information WITHOUT new line
 	 * 
 	 * @author zzy
 	 * @see #debugPrintln(String, boolean)
 	 * @param s
-	 * 		Content to print
+	 *            Content to print
 	 * @param debug
-	 * 		Whether to input
+	 *            Whether to input
 	 */
 	public static void debugPrint(String s, boolean debug)
 	{
@@ -1010,29 +1015,28 @@ public abstract class Util
 			System.err.print(s);
 		}
 	}
-	
+
 	/**
 	 * Print debug information with new line
 	 * 
 	 * @author zzy
 	 * @see #debugPrint(String, boolean)
 	 * @param s
-	 * 		Content to print
+	 *            Content to print
 	 * @param debug
-	 * 		Whether to input
+	 *            Whether to input
 	 */
 	public static void debugPrintln(String s, boolean debug)
 	{
-		debugPrint(s+"\n", debug);
+		debugPrint(s + "\n", debug);
 	}
-	
+
 	/**
 	 * MD5 digest
 	 * 
 	 * @param s
-	 * 		Source string
-	 * @return
-	 * 		The MD5 digest, in Hex string format
+	 *            Source string
+	 * @return The MD5 digest, in Hex string format
 	 */
 	public final static String MD5(String s)
 	{
@@ -1059,6 +1063,48 @@ public abstract class Util
 		{
 			e.printStackTrace();
 			return null;
+		}
+	}
+
+	public static void generateBenchmark(String path, int st, int end,
+			int step, String preffix, String suffix) throws IOException
+	{
+		if (end < st)
+		{
+			System.err.println("end must be larger than st");
+			return;
+		}
+
+		st -= (preffix.length() + suffix.length());
+		if (st < 0)
+		{
+			System.err.println("Not enough length for preffix and suffix");
+			return;
+		}
+		end -= (preffix.length() + suffix.length());
+
+		File dir = new File(path);
+		if (dir.isFile())
+		{
+			System.err.println("Normal file exists: " + path);
+			return;
+		}
+		else if (dir.isDirectory())
+		{
+			System.err.println("Directory exists: " + path);
+			// dir.delete();
+			return ;
+		}
+
+		dir.mkdirs();
+
+		for (int i = st; i <= end; i += step)
+		{
+			String name = path + "/"
+					+ (i + (preffix.length() + suffix.length())) + ".txt";
+			Util.writeFile(name, preffix);
+			Util.writeFileAppend(name, RandomStringUtils.randomAlphanumeric(i));
+			Util.writeFileAppend(name, suffix);
 		}
 	}
 

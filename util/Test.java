@@ -3,6 +3,7 @@ package util;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -14,6 +15,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -108,8 +110,7 @@ public class Test
 		System.out.println(a);
 		System.out.println(num);*/
 		
-		int a = 1;
-		assert(a==0);
-		System.out.println("huhu");
+		new File("/Users/zzy/try/test").delete();
+		Util.generateBenchmark("/Users/zzy/try/test", 20, 100, 10, "zzyhead", "zzytail");
 	}
 }
