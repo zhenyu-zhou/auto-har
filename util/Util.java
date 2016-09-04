@@ -300,10 +300,10 @@ public abstract class Util
 	public static void writeFile(File outFile, String content)
 			throws IOException
 	{
-		if(content == null || content.length() == 0)
+		if (content == null || content.length() == 0)
 		{
 			System.err.println("Nothing to write");
-			return ;
+			return;
 		}
 		if (outFile.getParentFile() != null
 				&& !outFile.getParentFile().exists())
@@ -1066,20 +1066,45 @@ public abstract class Util
 		}
 	}
 
+	/**
+	 * Generate benchmark files with multiple size and random contents.
+	 * 
+	 * @author zzy
+	 * @param path
+	 *            The folder to store benchmark files
+	 * @param st
+	 *            The start size.
+	 * @param end
+	 *            The end size (included, ie. size \in [st, end])
+	 * @param step
+	 *            The step from <code>st</code> to <code>end</code>. If set to
+	 *            -1, then <code>end</code> is disabled and only one file with
+	 *            size <code>st</code> is generated.
+	 * @param preffix
+	 *            The required preffix for all files.
+	 * @param suffix
+	 *            The required suffix for all files.
+	 * @throws IOException
+	 */
 	public static void generateBenchmark(String path, int st, int end,
 			int step, String preffix, String suffix) throws IOException
 	{
-		if (end < st)
+		if (step != -1 && end < st)
 		{
 			System.err.println("end must be larger than st");
 			return;
 		}
+		else if (step == -1)
+		{
+			end = st;
+			step = 1;
+		}
 
-		if(preffix == null)
+		if (preffix == null)
 			preffix = "";
-		if(suffix == null)
+		if (suffix == null)
 			suffix = "";
-		
+
 		st -= (preffix.length() + suffix.length());
 		if (st < 0)
 		{
@@ -1098,7 +1123,7 @@ public abstract class Util
 		{
 			System.err.println("Directory exists: " + path);
 			// dir.delete();
-			return ;
+			return;
 		}
 
 		dir.mkdirs();
@@ -1111,6 +1136,24 @@ public abstract class Util
 			Util.writeFileAppend(name, RandomStringUtils.randomAlphanumeric(i));
 			Util.writeFileAppend(name, suffix);
 		}
+	}
+
+	/**
+	 * Caluculate the mean, min and max for a given array
+	 * 
+	 * @author zzy
+	 * @param a
+	 *            The given array. Can contain anything <code>extends Number</code>.
+	 * @return The array as <code>[mean, min, max]</code>
+	 */
+	public static <T extends Number & Comparable<T>> ArrayList<T> mean_min_max(ArrayList<T> a)
+	{
+		ArrayList<T> ret = new ArrayList<T>();
+		Collections.sort(a);
+		ret.add(a.get(a.size() / 2));
+		ret.add(a.get(0));
+		ret.add(a.get(a.size() - 1));
+		return ret;
 	}
 
 }
