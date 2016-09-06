@@ -1149,6 +1149,8 @@ public abstract class Util
 	public static <T extends Number & Comparable<T>> ArrayList<T> mean_min_max(ArrayList<T> a)
 	{
 		ArrayList<T> ret = new ArrayList<T>();
+		if(a == null || a.size() == 0)
+			return ret;
 		Collections.sort(a);
 		ret.add(a.get(a.size() / 2));
 		ret.add(a.get(0));
