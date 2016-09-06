@@ -1138,6 +1138,7 @@ public abstract class Util
 		}
 	}
 
+	// TODO: The output order seems to be incorrect
 	/**
 	 * Caluculate the mean, min and max for a given array
 	 * 
