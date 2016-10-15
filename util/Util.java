@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -905,6 +906,14 @@ public abstract class Util
 		try
 		{
 			Class c = Class.forName(caller.getClass().getName());
+			// Get the length of array. It's not a method
+			if (c.isArray())
+			{
+				if (m.equals("length"))
+				{
+					return Array.getLength(caller);
+				}
+			}
 
 			if (para == null || para.length == 0)
 			{
@@ -921,6 +930,9 @@ public abstract class Util
 				Method method = c.getMethod(m, para_type);
 				return method.invoke(caller, para);
 			}
+		} catch (NoSuchMethodException nme)
+		{
+			nme.printStackTrace();
 		} catch (Exception e)
 		{
 			e.printStackTrace();
@@ -1143,19 +1155,36 @@ public abstract class Util
 	 * 
 	 * @author zzy
 	 * @param a
-	 *            The given array. Can contain anything <code>extends Number</code>.
+	 *            The given array. Can contain anything
+	 *            <code>extends Number</code>.
 	 * @return The array as <code>[mean, min, max]</code>
 	 */
-	public static <T extends Number & Comparable<T>> ArrayList<T> mean_min_max(ArrayList<T> a)
+	public static <T extends Number & Comparable<T>> ArrayList<T> mean_min_max(
+			ArrayList<T> a)
 	{
 		ArrayList<T> ret = new ArrayList<T>();
-		if(a == null || a.size() == 0)
+		if (a == null || a.size() == 0)
 			return ret;
 		Collections.sort(a);
 		ret.add(a.get(a.size() / 2));
 		ret.add(a.get(0));
 		ret.add(a.get(a.size() - 1));
 		return ret;
+	}
+
+	/**
+	 * Print out the index and elements of an array
+	 * 
+	 * @author zzy
+	 * @param arr
+	 *            The given array. Cannot be primitive types.
+	 */
+	public static <T> void printArr(T[] arr)
+	{
+		for (int i = 0; i < arr.length; i++)
+		{
+			System.out.println(i + ": " + arr[i]);
+		}
 	}
 
 }
