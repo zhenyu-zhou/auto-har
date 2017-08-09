@@ -29,6 +29,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -448,11 +449,11 @@ public abstract class Util
 	 * @return The result array
 	 */
 	// TODO: useless?
-	public static ArrayList<Pair<String, Double>> PairSet2Array(
-			TreeSet<Pair<String, Double>> set)
+	public static List<Pair<String, Double>> PairSet2Array(
+			Set<Pair<String, Double>> set)
 	{
 		Iterator<Pair<String, Double>> p = set.iterator();
-		ArrayList<Pair<String, Double>> ret = new ArrayList<Pair<String, Double>>();
+		List<Pair<String, Double>> ret = new ArrayList<Pair<String, Double>>();
 
 		while (p.hasNext())
 		{
@@ -475,8 +476,7 @@ public abstract class Util
 	 * @author zzy
 	 * @return The average in double format
 	 */
-	public static double weight_avg(ArrayList<Double> arr,
-			boolean is_nature_order)
+	public static double weight_avg(List<Double> arr, boolean is_nature_order)
 	{
 		Collections.sort(arr);
 		if (is_nature_order)
@@ -533,7 +533,6 @@ public abstract class Util
 	{
 		String addr = "https://ajax.googleapis.com/ajax/services/search/web?v=1.0&"
 				+ "q=" + query.replace(" ", "%20") + "&userip=USERS-IP-ADDRESS";
-		// System.out.println("a: "+addr);
 		URL url = new URL(addr);
 		URLConnection connection = url.openConnection();
 
@@ -631,9 +630,9 @@ public abstract class Util
 	 * @return The ArrayList of all URLs
 	 */
 	@Deprecated
-	public static ArrayList<String> getURLs(String s)
+	public static List<String> getURLs(String s)
 	{
-		ArrayList<String> ret = new ArrayList<String>();
+		List<String> ret = new ArrayList<String>();
 
 		// Pattern p = Pattern.compile(url_regex);
 		Matcher matcher = URL.matcher(s);
@@ -652,9 +651,9 @@ public abstract class Util
 	 *            The given string
 	 * @return The HashSet of all URLs
 	 */
-	public static HashSet<String> extractUrls(String input)
+	public static Set<String> extractUrls(String input)
 	{
-		HashSet<String> result = new HashSet<String>();
+		Set<String> result = new HashSet<String>();
 
 		Pattern pattern = Pattern
 				.compile("\\b(((ht|f)tp(s?)\\:\\/\\/|~\\/|\\/)|www.)"
@@ -1159,10 +1158,10 @@ public abstract class Util
 	 *            <code>extends Number</code>.
 	 * @return The array as <code>[mean, min, max]</code>
 	 */
-	public static <T extends Number & Comparable<T>> ArrayList<T> mean_min_max(
-			ArrayList<T> a)
+	public static <T extends Number & Comparable<T>> List<T> mean_min_max(
+			List<T> a)
 	{
-		ArrayList<T> ret = new ArrayList<T>();
+		List<T> ret = new ArrayList<T>();
 		if (a == null || a.size() == 0)
 			return ret;
 		Collections.sort(a);
