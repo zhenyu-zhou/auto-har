@@ -221,19 +221,19 @@ public abstract class Util
 	}
 
 	/**
-	 * To sleep for a random time. Just for avoiding crawler detecting.
+	 * To sleep for a random time. Can be used for avoiding crawler detecting.
 	 * 
 	 * @param low
-	 *            The minimum time to sleep
+	 *            The minimum time to sleep (inclusive)
 	 * @param high
-	 *            The maximum time to sleep
+	 *            The maximum time to sleep (exclusive)
 	 * @author zzy
 	 */
 	public static void randomSleep(int low, int high)
 	{
 		System.out.println("Begin to sleep");
 		Random r = new Random();
-		int time = r.nextInt(high) + low;
+		int time = r.nextInt(high - low) + low;
 		try
 		{
 			Thread.sleep(time);
@@ -1188,11 +1188,12 @@ public abstract class Util
 	}
 
 	/**
-	 * Get a random object from the given distribution
-	 * Note that the probability should sum up to 1 with the error 0.000001
+	 * Get a random object from the given distribution Note that the probability
+	 * should sum up to 1 with the error 0.000001
 	 * 
 	 * @param dist
-	 * 			The distribution given by all objects and the corresponding possibility
+	 *            The distribution given by all objects and the corresponding
+	 *            possibility
 	 * @see #randomGet(List, double)
 	 * @author zzy
 	 * @return
@@ -1206,16 +1207,17 @@ public abstract class Util
 	 * Get a random object from the given distribution
 	 * 
 	 * @param dist
-	 * 			The distribution given by all objects and the corresponding possibility
+	 *            The distribution given by all objects and the corresponding
+	 *            possibility
 	 * @param epsilon
-	 * 			The error could be tolerated if the possibilities do not sum up to 1
-	 * 			Must be \in [0, 0.1]
+	 *            The error could be tolerated if the possibilities do not sum
+	 *            up to 1 Must be \in [0, 0.1]
 	 * @throws RuntimeException
-	 * 			When epsilon is not valid or the probability sum error cannot be tolerated
+	 *             When epsilon is not valid or the probability sum error cannot
+	 *             be tolerated
 	 * @see #randomGet(List)
 	 * @author zzy
-	 * @return
-	 * 			A random object from the distribution
+	 * @return A random object from the distribution
 	 */
 	public static <T> T randomGet(List<Pair<T, Double>> dist, double epsilon)
 	{
