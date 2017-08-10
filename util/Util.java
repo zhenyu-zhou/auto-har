@@ -1256,6 +1256,15 @@ public abstract class Util
 		return dist.get(i).getFirst();
 	}
 
+	/**
+	 * Calculate the average of a given double array.
+	 * 
+	 * @param a
+	 * 		The given double array
+	 * @author zzy
+	 * @return
+	 * 		The average
+	 */
 	public static double avg(List<Double> a)
 	{
 		double sum = 0;
