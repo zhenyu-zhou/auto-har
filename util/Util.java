@@ -466,7 +466,7 @@ public abstract class Util
 
 	/**
 	 * Calculate the weighted average of the given array. If the second
-	 * parameter is ture, weight defines as the smaller (natrual order) element
+	 * parameter is ture, weight defines as the smaller (natural order) element
 	 * has larger weight.
 	 * 
 	 * @param arr
