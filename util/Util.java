@@ -1255,4 +1255,16 @@ public abstract class Util
 
 		return dist.get(i).getFirst();
 	}
+
+	public static double avg(List<Double> a)
+	{
+		double sum = 0;
+		for (Double d : a)
+		{
+			sum += d;
+		}
+
+		return sum / a.size();
+	}
+
 }
