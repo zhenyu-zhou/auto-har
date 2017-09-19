@@ -422,7 +422,7 @@ public abstract class Util
 	 * @param charset
 	 *            The given character set
 	 * @author zzy
-	 * @see #readFile(String, String)
+	 * @see #readFile(String)
 	 * @return The content of the file
 	 * @throws IOException
 	 */
