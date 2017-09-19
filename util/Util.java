@@ -30,7 +30,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -53,6 +52,9 @@ import difflib.*;
 @SuppressWarnings("restriction")
 public abstract class Util
 {
+	// Forbidden instantiation
+	private Util() {}
+	
 	private static final String[] STOP = { "the", "a", "and", "to" };
 	private static final String[] STOP_CH = { "张三", "李四" };
 	/**
@@ -409,7 +411,7 @@ public abstract class Util
 	public static String readFile(String path, String charset)
 			throws IOException
 	{
-		return readFile(new File(path));
+		return readFile(new File(path), charset);
 	}
 
 	/**
