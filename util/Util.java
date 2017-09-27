@@ -28,8 +28,10 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -53,8 +55,10 @@ import difflib.*;
 public abstract class Util
 {
 	// Forbidden instantiation
-	private Util() {}
-	
+	private Util()
+	{
+	}
+
 	private static final String[] STOP = { "the", "a", "and", "to" };
 	private static final String[] STOP_CH = { "张三", "李四" };
 	/**
@@ -1262,10 +1266,9 @@ public abstract class Util
 	 * Calculate the average of a given double array.
 	 * 
 	 * @param a
-	 * 		The given double array
+	 *            The given double array
 	 * @author zzy
-	 * @return
-	 * 		The average
+	 * @return The average
 	 */
 	public static double avg(List<Double> a)
 	{
@@ -1276,6 +1279,41 @@ public abstract class Util
 		}
 
 		return sum / a.size();
+	}
+
+	/**
+	 * Count number of elements in an array
+	 * 
+	 * @param a
+	 *            The array to be counted
+	 * @author zzy
+	 * @return A hash table with ordered key as elements and value as the times
+	 *         of its key occurs
+	 */
+	public static <T extends Number & Comparable<T>> Map<T, Integer> countArr(
+			List<T> a)
+	{
+		Map<T, Integer> ret = new TreeMap<T, Integer>();
+		if (a == null || a.size() == 0)
+			return ret;
+		Collections.sort(a);
+
+		int num = 1;
+		for (int i = 0; i < a.size() - 1; i++)
+		{
+			if (a.get(i).equals(a.get(i + 1)))
+			{
+				num++;
+			}
+			else
+			{
+				ret.put(a.get(i), num);
+				num = 1;
+			}
+		}
+		ret.put(a.get(a.size() - 1), num);
+
+		return ret;
 	}
 
 }
