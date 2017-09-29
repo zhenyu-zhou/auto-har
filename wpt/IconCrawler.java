@@ -187,7 +187,7 @@ public class IconCrawler
 				dup.add(name);
 			}
 
-			HttpUtil.downloadFile(ROOT + name + "/" + fullname, SRC[i]);
+			HttpUtil.downloadFileWithTimeout(ROOT + name + "/" + fullname, SRC[i], 5000);
 		}
 	}
 }

@@ -9,6 +9,10 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.FutureTask;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
@@ -25,11 +29,12 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.util.EntityUtils;
 
+import wpt.DownloadTask;
+
 
 /**
  * HTTP工具类.
  * 
- * @author David.Huang
  */
 // http://qiaolevip.iteye.com/blog/1685893
 public class HttpUtil {
@@ -366,6 +371,23 @@ public class HttpUtil {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public static void downloadFileWithTimeout(String path, String url, int timeout)
+	{
+		ExecutorService executor = Executors.newSingleThreadExecutor();  
+		FutureTask<Void> future =  
+		       new FutureTask<Void>(new DownloadTask(path, url));  
+		executor.execute(future);  
+		try {  
+		    future.get(timeout, TimeUnit.MILLISECONDS); 
+		} catch (Exception e) {  
+			future.cancel(true); 
+			e.printStackTrace();
+		} 
+		finally {  
+		    executor.shutdown();  
+		} 
 	}
 
 	/*public static void main(String[] args) throws IOException {

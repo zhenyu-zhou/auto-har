@@ -71,7 +71,7 @@ public class HTMLCrawler
 			String ext = fullname.substring(index);
 			fullname = name + "-" + year + "." + month + "." + day + ext;
 
-			HttpUtil.downloadFile(ROOT + SITE[i] + "/" + fullname, SRC[i]);
+			HttpUtil.downloadFileWithTimeout(ROOT + SITE[i] + "/" + fullname, SRC[i], 5000);
 		}
 	}
 }
