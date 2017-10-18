@@ -29,7 +29,6 @@ public class Pair<M, N extends Number> implements Comparable<Pair<M, N>>
 		if ((m.equals(p.m))) { return 0; }
 
 		int ret = -1;
-		// TopNSet doesn't allow duplicated elements
 		if (n instanceof Double)
 		{
 			ret = Double.compare((Double) n, (Double) (p.n));
@@ -77,6 +76,16 @@ public class Pair<M, N extends Number> implements Comparable<Pair<M, N>>
 	public void set(M m_, N n_)
 	{
 		m = m_;
+		n = n_;
+	}
+	
+	public void setFirst(M m_)
+	{
+		m = m_;
+	}
+	
+	public void setSecond(N n_)
+	{
 		n = n_;
 	}
 }
