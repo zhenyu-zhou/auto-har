@@ -54,7 +54,7 @@ import difflib.*;
 @SuppressWarnings("restriction")
 public abstract class Util
 {
-	// Forbidden instantiation
+	// Noninstantiable
 	private Util()
 	{
 	}
