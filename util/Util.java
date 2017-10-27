@@ -364,6 +364,18 @@ public abstract class Util
 		out.write(content);
 		out.close();
 	}
+	
+	private static String readFromBuffer(BufferedReader reader) throws IOException
+	{
+		String temp = null;
+		StringBuilder content = new StringBuilder();
+		while ((temp = reader.readLine()) != null)
+		{
+			content.append(temp + "\n");
+		}
+		reader.close();
+		return content.toString();
+	}
 
 	/**
 	 * Read the content of a certain file
@@ -389,6 +401,13 @@ public abstract class Util
 	 * @throws IOException
 	 */
 	public static String readFile(File f) throws IOException
+	{
+		BufferedReader reader = new BufferedReader(new FileReader(f));
+		return readFromBuffer(reader);
+	}
+	
+	@Deprecated
+	public static String readFile_ori(File f) throws IOException
 	{
 		BufferedReader reader = new BufferedReader(new FileReader(f));
 		String temp = null, content = "";
@@ -435,13 +454,7 @@ public abstract class Util
 		FileInputStream in = new FileInputStream(f);
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in,
 				charset));
-		String temp = null, content = "";
-		while ((temp = reader.readLine()) != null)
-		{
-			content += temp + "\n";
-		}
-		reader.close();
-		return content;
+		return readFromBuffer(reader);
 	}
 
 	/**
