@@ -16,6 +16,7 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.Socket;
 import java.net.URL;
@@ -1283,15 +1284,21 @@ public abstract class Util
 	 * @author zzy
 	 * @return The average
 	 */
-	public static double avg(List<Double> a)
+	public static <T extends Number> double avg(List<T> a)
 	{
-		double sum = 0;
-		for (Double d : a)
+		BigDecimal sum = new BigDecimal(0);
+		for (T d : a)
 		{
-			sum += d;
+			sum = add(sum, d);
 		}
 
-		return sum / a.size();
+		return sum.doubleValue() / a.size();
+	}
+	
+	private static BigDecimal add(Number a, Number b)
+	{
+		BigDecimal ret = new BigDecimal( a.toString() ).add( new BigDecimal( b.toString() ) );
+		return ret;
 	}
 
 	/**
