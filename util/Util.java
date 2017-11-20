@@ -43,6 +43,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import Jama.Matrix;
 import sun.misc.SharedSecrets;
 import difflib.*;
 
@@ -1336,4 +1337,30 @@ public abstract class Util
 		return ret;
 	}
 
+	/**
+	 * Solve linear equations
+	 * 
+	 * @author zzy
+	 * @param lhsArray
+	 * 		The X in Xb = Y
+	 * @param rhsArray
+	 * 		The Y in Xb = Y
+	 * @return
+	 * 		The b in Xb = Y
+	 */
+	public static double[] solve(double[][] lhsArray, double[] rhsArray)
+	{
+		int len = rhsArray.length;
+		double[] ret = new double[len];
+		
+		Matrix lhs = new Matrix(lhsArray);
+		Matrix rhs = new Matrix(rhsArray, len);
+		Matrix ans = lhs.solve(rhs);
+		for (int i = 0; i < len; i++)
+		{
+			ret[i] = ans.get(i, 0);
+		}
+		
+		return ret;
+	}
 }
