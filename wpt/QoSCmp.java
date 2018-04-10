@@ -11,9 +11,9 @@ import util.Util;
 
 public class QoSCmp
 {
-	static final String DIR = "/Users/zzy/try/crawler/";
+	static final String DIR = "/Users/zzy/Documents/script"; // "/Users/zzy/try/crawler/";
 	static final int MAX_HIGHLY_ACTIVE = 1;
-	static int st_mon = -1, st_day = -1;//, month = -1, day = -1;
+	static int st_mon = -1, st_day = -1, st_year = 2015;//, month = -1, day = -1;
 	static LocalDate now = null;
 
 	static boolean cmp(File dir, ArrayList<Integer> change_period, ArrayList<Double> change_percentage) throws IOException
@@ -25,7 +25,6 @@ public class QoSCmp
 			String s = f.getName();
 			if (f.getName().startsWith("."))
 				continue;
-			// System.out.println(f.getAbsolutePath());
 			int idx = s.lastIndexOf('-');
 			preffix = dir.getAbsolutePath()+"/"+s.substring(0, idx+1);
 			idx = s.lastIndexOf('.');
@@ -33,9 +32,8 @@ public class QoSCmp
 			break;
 		}
 		
-		// int m = st_mon, d = st_day;
-		LocalDate d = LocalDate.of(2015, st_mon, st_day);
-		now = LocalDate.of(2015, 4, 13);
+		LocalDate d = LocalDate.of(st_year, st_mon, st_day);
+		// now = LocalDate.of(2015, 4, 13);
 		boolean change = false, inSeq = true;
 		int len = 0, min_len = Integer.MAX_VALUE, total_period = 0, change_times = 0;
 		while(ChronoUnit.DAYS.between(d, now) > 0)//(m < month || (m == month && d < day))
@@ -43,10 +41,16 @@ public class QoSCmp
 			change = false;
 			int day = d.getDayOfMonth();
 			int month = d.getMonthValue();
-			String n1 = preffix+month+"."+day+ext;
+			int year = d.getYear();
+			
+			String n1 = preffix+year+"."+month+"."+day+ext;
+			
 			d = d.plusDays(1);
-			day = d.getDayOfMonth(); month = d.getMonthValue();
-			String n2 = preffix+month+"."+day+ext;
+			int day2 = d.getDayOfMonth(); 
+			int month2 = d.getMonthValue(); 
+			int year2 = d.getYear();
+			String n2 = preffix+year2+"."+month2+"."+day2+ext;
+			
 			boolean find = true;
 			while(ChronoUnit.DAYS.between(d, now) >= 0)
 			{
@@ -57,14 +61,20 @@ public class QoSCmp
 				}
 				catch(FileNotFoundException fnfe)
 				{
-					// System.err.println("File not found!");
-					change = false;
-					find = false;
-					total_period--;
-					d = d.plusDays(1);
-					day = d.getDayOfMonth(); month = d.getMonthValue();
-					n2 = preffix+month+"."+day+ext;
-					continue;
+					try{
+						n1 = preffix+month+"."+day+ext;
+						n2 = preffix+month2+"."+day2+ext;
+						change = !Util.isFileSameWithThre(n1, n2, MAX_HIGHLY_ACTIVE);
+						total_period++;
+					} catch(FileNotFoundException fnfe2) {
+						change = false;
+						find = false;
+						total_period--;
+						d = d.plusDays(1);
+						day = d.getDayOfMonth(); month = d.getMonthValue();
+						n2 = preffix+year+"."+month+"."+day+ext;
+						continue; 
+					}
 				}
 				break;
 			}
@@ -143,10 +153,7 @@ public class QoSCmp
 
 	public static void main(String args[]) throws IOException
 	{
-		// FIXME
-		System.err.println("FIXME: add year 2016!!");
-		
-		/* now = LocalDate.now();
+		now = LocalDate.now();
 		
 		File dir = new File(DIR);
 		if (!dir.isDirectory())
@@ -164,6 +171,6 @@ public class QoSCmp
 				continue;
 			}
 			analysis(sub_dir);
-		} */
+		}
 	}
 }
