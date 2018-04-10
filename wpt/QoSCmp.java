@@ -69,7 +69,7 @@ public class QoSCmp
 					} catch(FileNotFoundException fnfe2) {
 						change = false;
 						find = false;
-						total_period--;
+						// total_period--;
 						d = d.plusDays(1);
 						day = d.getDayOfMonth(); month = d.getMonthValue();
 						n2 = preffix+year+"."+month+"."+day+ext;
