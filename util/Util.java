@@ -378,6 +378,18 @@ public abstract class Util
 		reader.close();
 		return content.toString();
 	}
+	
+	private static List<String> readListFromBuffer(BufferedReader reader) throws IOException
+	{
+		String temp = null;
+		List<String> ret = new ArrayList<String>();
+		while ((temp = reader.readLine()) != null)
+		{
+			ret.add(temp);
+		}
+		reader.close();
+		return ret;
+	}
 
 	/**
 	 * Read the content of a certain file
@@ -387,11 +399,26 @@ public abstract class Util
 	 * @author zzy
 	 * @return The content of the file
 	 * @throws IOException
+	 * @see {@link #readListFromFile(String)}
 	 */
 	public static String readFile(String path) throws IOException
 	{
 		return readFile(new File(path));
 	}
+	
+	/**
+	 * Read the content of a certain file
+	 * 
+	 * @param path
+	 *            The path of the file
+	 * @author zzy
+	 * @return The content of the file as a list
+	 * @throws IOException
+	 */
+	public static List<String> readListFromFile(String path) throws IOException
+	{
+		return readListFromFile(new File(path));
+	}	
 
 	/**
 	 * Read the content of a certain file
@@ -401,11 +428,27 @@ public abstract class Util
 	 * @author zzy
 	 * @return The content of the file
 	 * @throws IOException
+	 * @see {@link #readListFromFile(File)}
 	 */
 	public static String readFile(File f) throws IOException
 	{
 		BufferedReader reader = new BufferedReader(new FileReader(f));
 		return readFromBuffer(reader);
+	}
+	
+	/**
+	 * Read the content of a certain file
+	 * 
+	 * @param f
+	 *            The input file
+	 * @author zzy
+	 * @return The content of the file as a list
+	 * @throws IOException
+	 */
+	public static List<String> readListFromFile(File f) throws IOException
+	{
+		BufferedReader reader = new BufferedReader(new FileReader(f));
+		return readListFromBuffer(reader);
 	}
 	
 	@Deprecated
@@ -430,6 +473,7 @@ public abstract class Util
 	 *            The given character set
 	 * @author zzy
 	 * @see #readFile(String)
+	 * @see #readListFromFile(String, String)
 	 * @return The content of the file
 	 * @throws IOException
 	 */
@@ -437,6 +481,24 @@ public abstract class Util
 			throws IOException
 	{
 		return readFile(new File(path), charset);
+	}
+	
+	/**
+	 * Read the content of a certain file with certain character set
+	 * 
+	 * @param path
+	 *            The path of the file
+	 * @param charset
+	 *            The given character set
+	 * @author zzy
+	 * @see #readFile(String)
+	 * @return The content of the file as a list
+	 * @throws IOException
+	 */
+	public static List<String> readListFromFile(String path, String charset)
+			throws IOException
+	{
+		return readListFromFile(new File(path), charset);
 	}
 
 	/**
@@ -448,6 +510,7 @@ public abstract class Util
 	 *            The given character set
 	 * @author zzy
 	 * @see #readFile(String)
+	 * @see #readListFromFile(File, String)
 	 * @return The content of the file
 	 * @throws IOException
 	 */
@@ -457,6 +520,26 @@ public abstract class Util
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in,
 				charset));
 		return readFromBuffer(reader);
+	}
+	
+	/**
+	 * Read the content of a certain file with certain character set
+	 * 
+	 * @param f
+	 *            The input file
+	 * @param charset
+	 *            The given character set
+	 * @author zzy
+	 * @see #readFile(String)
+	 * @return The content of the file as a list
+	 * @throws IOException
+	 */
+	public static List<String> readListFromFile(File f, String charset) throws IOException
+	{
+		FileInputStream in = new FileInputStream(f);
+		BufferedReader reader = new BufferedReader(new InputStreamReader(in,
+				charset));
+		return readListFromBuffer(reader);
 	}
 
 	/**
