@@ -1291,7 +1291,7 @@ public abstract class Util
 	}
 
 	/**
-	 * Get a random object from the given distribution Note that the probability
+	 * Get a random object from the given distribution. Note that the probability
 	 * should sum up to 1 with the error 0.000001
 	 * 
 	 * @param dist
