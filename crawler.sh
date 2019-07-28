@@ -18,6 +18,7 @@ today=`date +%Y%m%d`
 msg="update_"$today""
 echo $msg
 cd /Users/zzy/Documents/script
+git ls-files --deleted -z | git update-index --assume-unchanged -z --stdin
 git add .
 git commit -m $msg
 git push origin master
