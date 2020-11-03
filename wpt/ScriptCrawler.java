@@ -196,5 +196,8 @@ public class ScriptCrawler
 
 			HttpUtil.downloadFileWithTimeout(ROOT + name + "/" + fullname, SRC[i], 5000);
 		}
+		
+		System.out.println("Finish script");
+		System.exit(0);
 	}
 }
